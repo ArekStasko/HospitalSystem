@@ -1,0 +1,14 @@
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\bin\Debug\netcoreapp3.1\hospital_registration_app.exe
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\bin\Debug\netcoreapp3.1\hospital_registration_app.deps.json
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\bin\Debug\netcoreapp3.1\hospital_registration_app.runtimeconfig.json
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\bin\Debug\netcoreapp3.1\hospital_registration_app.runtimeconfig.dev.json
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\bin\Debug\netcoreapp3.1\hospital_registration_app.dll
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\bin\Debug\netcoreapp3.1\hospital_registration_app.pdb
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.csproj.AssemblyReference.cache
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.AssemblyInfoInputs.cache
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.AssemblyInfo.cs
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.csproj.CoreCompileInputs.cache
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.dll
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.pdb
+C:\Users\areks\source\repos\hospital_registration_app\hospital_registration_app\obj\Debug\netcoreapp3.1\hospital_registration_app.genruntimeconfig.cache
