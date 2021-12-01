@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YYt+c6N7tVCe+2KKKLr0VgC6JDraCAYHn5qziIqdPZKPOSQepL3njg0IT1f4J8+upp1+g03ZUxdGvdD2L1GYTA==",
+  "dgSpecHash": "uhhtX2pZ7K6qrXOh8Oi2yluY07grckEEgInCWmCcpuRYcWzhHpK758r8YYGYsVqu/9tve6MTkrAczKYLBg58Pw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\hospital_registration_app\\hospital_registration_app.csproj",
+  "projectFilePath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\hospital_registration_app\\HospitalRegistrationApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -24,19 +24,6 @@
         "runtime": {
           "bin/placeholder/HospitalRegistrationApp.DataControllers.dll": {}
         }
-      },
-      "HospitalRegistrationApp.Views/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "HospitalRegistrationApp.DataControllers": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/HospitalRegistrationApp.Views.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/HospitalRegistrationApp.Views.dll": {}
-        }
       }
     }
   },
@@ -50,16 +37,11 @@
       "type": "project",
       "path": "../HospitalRegistartionApp.DataControllers/HospitalRegistrationApp.DataControllers.csproj",
       "msbuildProject": "../HospitalRegistartionApp.DataControllers/HospitalRegistrationApp.DataControllers.csproj"
-    },
-    "HospitalRegistrationApp.Views/1.0.0": {
-      "type": "project",
-      "path": "../HospitalRegistrationApp.Views/HospitalRegistrationApp.Views.csproj",
-      "msbuildProject": "../HospitalRegistrationApp.Views/HospitalRegistrationApp.Views.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "HospitalRegistrationApp.Views >= 1.0.0"
+      "HospitalRegistrationApp.DataControllers >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -70,11 +52,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\hospital_registration_app\\HospitalRegistrationApp.csproj",
-      "projectName": "HospitalRegistrationApp",
-      "projectPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\hospital_registration_app\\HospitalRegistrationApp.csproj",
+      "projectUniqueName": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.Views\\HospitalRegistrationApp.Views.csproj",
+      "projectName": "HospitalRegistrationApp.Views",
+      "projectPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.Views\\HospitalRegistrationApp.Views.csproj",
       "packagesPath": "C:\\Users\\areks\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\hospital_registration_app\\obj\\",
+      "outputPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.Views\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -97,8 +79,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.Views\\HospitalRegistrationApp.Views.csproj": {
-              "projectPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.Views\\HospitalRegistrationApp.Views.csproj"
+            "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistartionApp.DataControllers\\HospitalRegistrationApp.DataControllers.csproj": {
+              "projectPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistartionApp.DataControllers\\HospitalRegistrationApp.DataControllers.csproj"
             }
           }
         }

@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace hospital_registration_app
+namespace hospitalRegistrationApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int num = 420;
+            Object someNumber = num;
         }
     }
 }
