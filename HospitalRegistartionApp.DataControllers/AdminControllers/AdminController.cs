@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using HospitalRegistrationApp.Views;
 
 namespace HospitalRegistrationApp.DataControllers.AdminControllers
 {
-    public class AdminController
+    public class AdminController : DataGetController
     {
-        public void AdminTestInfo()
+        public void GetAdminOptions()
         {
-            Console.WriteLine("You are logged in as Admin");
+            OptionsProvider options = new OptionsProvider();
+            options.PrintAdminOptions();
+
+            int userSelection = GetUserSelection();
+            Console.Clear();
+            Console.WriteLine($"You chosen option number {userSelection}");
         }
     }
 }

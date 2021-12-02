@@ -28,7 +28,7 @@ namespace HospitalRegistrationApp
             else if (selectedOption == 3)
             {
                 AdminController adminController = new AdminController();
-                adminController.AdminTestInfo();
+                adminController.GetAdminOptions();
             }
             else
             {

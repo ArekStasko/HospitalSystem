@@ -5,7 +5,7 @@ namespace HospitalRegistrationApp.DataControllers
 {
     public class DataGetController
     {
-        private int GetUserSelection()
+        protected int GetUserSelection()
         {
             string providedData = Console.ReadLine();
             int userSelection;
@@ -22,7 +22,7 @@ namespace HospitalRegistrationApp.DataControllers
         public int GetLoginSelection()
         {
             OptionsProvider options = new OptionsProvider();
-            options.ShowStartingOptions();
+            options.PrintStartingOptions();
             int userSelection = GetUserSelection();
             Console.Clear();
             return userSelection;

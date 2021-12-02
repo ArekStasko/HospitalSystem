@@ -6,6 +6,7 @@ namespace HospitalRegistrationApp.Views
 {
     public interface IOptionsProvider
     {
-        public void ShowStartingOptions();
+        public void PrintStartingOptions();
+        public void PrintAdminOptions();
     }
 }
