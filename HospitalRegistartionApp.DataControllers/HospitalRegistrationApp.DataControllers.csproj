@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HospitalRegistrationApp.DataAccess\HospitalRegistrationApp.DataAccess.csproj" />
+    <ProjectReference Include="..\HospitalRegistrationApp.Views\HospitalRegistrationApp.Views.csproj" />
   </ItemGroup>
 
 </Project>

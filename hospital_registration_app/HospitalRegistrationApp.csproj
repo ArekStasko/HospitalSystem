@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HospitalRegistrationApp.Views\HospitalRegistrationApp.Views.csproj" />
+    <ProjectReference Include="..\HospitalRegistartionApp.DataControllers\HospitalRegistrationApp.DataControllers.csproj" />
   </ItemGroup>
 
 </Project>

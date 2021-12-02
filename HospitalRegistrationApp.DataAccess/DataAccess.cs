@@ -2,7 +2,7 @@
 
 namespace HospitalRegistrationApp.DataAccess
 {
-    public class Class1
+    public class DataAccess
     {
     }
 }

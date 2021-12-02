@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HospitalRegistartionApp.DataControllers\HospitalRegistrationApp.DataControllers.csproj" />
-  </ItemGroup>
-
 </Project>

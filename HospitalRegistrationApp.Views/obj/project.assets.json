@@ -1,48 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
-      "HospitalRegistrationApp.DataAccess/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/HospitalRegistrationApp.DataAccess.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/HospitalRegistrationApp.DataAccess.dll": {}
-        }
-      },
-      "HospitalRegistrationApp.DataControllers/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "HospitalRegistrationApp.DataAccess": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/HospitalRegistrationApp.DataControllers.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/HospitalRegistrationApp.DataControllers.dll": {}
-        }
-      }
-    }
+    ".NETCoreApp,Version=v3.1": {}
   },
-  "libraries": {
-    "HospitalRegistrationApp.DataAccess/1.0.0": {
-      "type": "project",
-      "path": "../HospitalRegistrationApp.DataAccess/HospitalRegistrationApp.DataAccess.csproj",
-      "msbuildProject": "../HospitalRegistrationApp.DataAccess/HospitalRegistrationApp.DataAccess.csproj"
-    },
-    "HospitalRegistrationApp.DataControllers/1.0.0": {
-      "type": "project",
-      "path": "../HospitalRegistartionApp.DataControllers/HospitalRegistrationApp.DataControllers.csproj",
-      "msbuildProject": "../HospitalRegistartionApp.DataControllers/HospitalRegistrationApp.DataControllers.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
-      "HospitalRegistrationApp.DataControllers >= 1.0.0"
-    ]
+    ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
     "C:\\Users\\areks\\.nuget\\packages\\": {},
@@ -78,11 +41,7 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {
-            "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistartionApp.DataControllers\\HospitalRegistrationApp.DataControllers.csproj": {
-              "projectPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistartionApp.DataControllers\\HospitalRegistrationApp.DataControllers.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

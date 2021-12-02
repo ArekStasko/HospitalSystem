@@ -1,0 +1,10 @@
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\bin\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.deps.json
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\bin\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.dll
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\bin\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.pdb
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.csproj.AssemblyReference.cache
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.AssemblyInfoInputs.cache
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.AssemblyInfo.cs
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.dll
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.DataAccess\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.pdb
