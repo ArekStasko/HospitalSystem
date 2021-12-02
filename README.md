@@ -12,6 +12,8 @@ System will have options for administrator, doctors and patients.
 
 - Administrators can add hospitals and doctors.
 
+For now i will not implement authorization functionality, i will provide it during application development
+and when i develop my skills into higher level
 
 
 ## Use case diagram
