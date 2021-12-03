@@ -49,16 +49,19 @@ namespace HospitalRegistrationApp.DataAccess
 
             foreach(var line in File.ReadLines(HospitalsFilePath))
             {
-                string[] hospitalData = line.Split(separator.ToCharArray());
-                Hospital newHospital = new Hospital()
+                if (!string.IsNullOrEmpty(line))
                 {
-                    HospitalID = Int32.Parse(hospitalData[0]),
-                    IsOnlinePrescriptions = hospitalData[1],
-                    HospitalAdress = hospitalData[2],
-                    HospitalOpeningTime = hospitalData[3],
-                    HospitalClosingTime = hospitalData[4]
-                };
-                yield return newHospital;
+                    string[] hospitalData = line.Split(separator.ToCharArray());
+                    Hospital newHospital = new Hospital()
+                    {
+                        HospitalID = Int32.Parse(hospitalData[0]),
+                        IsOnlinePrescriptions = hospitalData[1] == "Yes",
+                        HospitalAdress = hospitalData[2],
+                        HospitalOpeningTime = hospitalData[3],
+                        HospitalClosingTime = hospitalData[4]
+                    };
+                    yield return newHospital;
+                }
             }
         }
 

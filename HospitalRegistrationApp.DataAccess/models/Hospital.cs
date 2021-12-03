@@ -7,7 +7,7 @@ namespace HospitalRegistrationApp.DataAccess.models
     public class Hospital : AbstractModel
     {
         public int HospitalID { get; set; }
-        public string IsOnlinePrescriptions { get; set; }
+        public bool IsOnlinePrescriptions { get; set; }
         public string HospitalAdress { get; set; }
         public string HospitalOpeningTime { get; set; }
         public string HospitalClosingTime { get; set; }
@@ -16,8 +16,7 @@ namespace HospitalRegistrationApp.DataAccess.models
         {
             return new[] { 
                 HospitalID.ToString(), 
-                // for now it has to be string 
-                IsOnlinePrescriptions, 
+                IsOnlinePrescriptions ? "Yes" : "No", 
                 HospitalAdress,
                 HospitalOpeningTime,
                 HospitalClosingTime

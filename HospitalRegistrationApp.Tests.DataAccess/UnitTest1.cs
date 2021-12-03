@@ -22,8 +22,8 @@ namespace HospitalRegistrationApp.Tests.DataAccess
 
             Hospital hospital = new Hospital()
             {
-                HospitalID = 124,
-                IsOnlinePrescriptions = "No",
+                HospitalID = 125,
+                IsOnlinePrescriptions = false,
                 HospitalAdress = "Ul. makreli 312",
                 HospitalOpeningTime = "9:00",
                 HospitalClosingTime = "18:00"
