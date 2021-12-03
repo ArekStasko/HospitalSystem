@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = HospitalRegistrationApp.Tests.DataAccess
+build_property.ProjectDir = C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.Tests.DataAccess\
