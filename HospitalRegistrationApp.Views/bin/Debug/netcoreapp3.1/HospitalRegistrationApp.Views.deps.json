@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "HospitalRegistrationApp.Views/1.0.0": {
+        "dependencies": {
+          "HospitalRegistrationApp.DataAccess": "1.0.0"
+        },
         "runtime": {
           "HospitalRegistrationApp.Views.dll": {}
+        }
+      },
+      "HospitalRegistrationApp.DataAccess/1.0.0": {
+        "runtime": {
+          "HospitalRegistrationApp.DataAccess.dll": {}
         }
       }
     }
   },
   "libraries": {
     "HospitalRegistrationApp.Views/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HospitalRegistrationApp.DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

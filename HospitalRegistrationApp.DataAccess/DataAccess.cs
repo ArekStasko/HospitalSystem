@@ -7,9 +7,9 @@ namespace HospitalRegistrationApp.DataAccess
 {
     public class DataProvider
     {
-        private const string HospitalsFilePath = @"D:\apps\HospitalRegistrationApp\hospitals.txt";
-        private const string DoctorsFilePath = @"D:\apps\HospitalRegistrationApp\doctors.txt";
-        private const string VisitsFilePath = @"D:\apps\HospitalRegistrationApp\visits.txt";
+        private const string HospitalsFilePath = @"hospitals.txt";
+        private const string DoctorsFilePath = @"doctors.txt";
+        private const string VisitsFilePath = @"visits.txt";
         private const string separator = "|";
 
         private void InitializeHospitalsFile()

@@ -21,6 +21,9 @@
         }
       },
       "HospitalRegistrationApp.Views/1.0.0": {
+        "dependencies": {
+          "HospitalRegistrationApp.DataAccess": "1.0.0"
+        },
         "runtime": {
           "HospitalRegistrationApp.Views.dll": {}
         }

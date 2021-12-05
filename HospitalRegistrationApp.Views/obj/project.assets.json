@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "HospitalRegistrationApp.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/HospitalRegistrationApp.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HospitalRegistrationApp.DataAccess.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "HospitalRegistrationApp.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../HospitalRegistrationApp.DataAccess/HospitalRegistrationApp.DataAccess.csproj",
+      "msbuildProject": "../HospitalRegistrationApp.DataAccess/HospitalRegistrationApp.DataAccess.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "HospitalRegistrationApp.DataAccess >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\areks\\.nuget\\packages\\": {},
@@ -41,7 +60,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.DataAccess\\HospitalRegistrationApp.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.DataAccess\\HospitalRegistrationApp.DataAccess.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

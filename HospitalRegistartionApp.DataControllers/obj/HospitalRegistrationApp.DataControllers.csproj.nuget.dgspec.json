@@ -160,7 +160,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.DataAccess\\HospitalRegistrationApp.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.DataAccess\\HospitalRegistrationApp.DataAccess.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

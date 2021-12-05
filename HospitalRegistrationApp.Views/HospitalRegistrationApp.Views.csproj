@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalRegistrationApp.DataAccess\HospitalRegistrationApp.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
