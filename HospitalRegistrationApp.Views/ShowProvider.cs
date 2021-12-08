@@ -21,5 +21,15 @@ namespace HospitalRegistrationApp.Views
                 PrintItem(hospital.ConvertToDataRow());
             }
         }
+
+        public void PrintDoctors(IEnumerable<Doctor> doctors)
+        {
+            Console.WriteLine("All doctors :");
+
+            foreach (var doctor in doctors)
+            {
+                PrintItem(doctor.ConvertToDataRow());
+            }
+        }
     }
 }

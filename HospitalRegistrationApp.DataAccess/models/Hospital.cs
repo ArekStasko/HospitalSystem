@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HospitalRegistrationApp.DataAccess.models
 {
@@ -12,6 +11,15 @@ namespace HospitalRegistrationApp.DataAccess.models
         public string HospitalOpeningTime { get; set; }
         public string HospitalClosingTime { get; set; }
 
+        public Hospital(List<string> hospitalData)
+        {
+            HospitalID = Int32.Parse(hospitalData[0]);
+            IsOnlinePrescriptions = hospitalData[1] == "Yes";
+            HospitalAdress = hospitalData[2];
+            HospitalOpeningTime = hospitalData[3];
+            HospitalClosingTime = hospitalData[4];
+        }
+
         public override string[] ConvertToDataRow()
         {
             return new[] { 
@@ -21,6 +29,11 @@ namespace HospitalRegistrationApp.DataAccess.models
                 HospitalOpeningTime,
                 HospitalClosingTime
             };
+        }
+
+        protected bool Equals(Hospital other)
+        {
+            return HospitalID == other.HospitalID;
         }
     }
 }
