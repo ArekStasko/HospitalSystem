@@ -24,7 +24,14 @@ namespace HospitalRegistrationApp.Views
 
         public void PrintAdminOptions()
         {
-            List<string> adminOptions = new List<string>() { "Add Doctor", "Remove Doctor", "Add Hospital", "Remove Hospital" };
+            List<string> adminOptions = new List<string>() 
+            { 
+                "Show Hospitals with Doctors", 
+                "Add Doctor", 
+                "Remove Doctor", 
+                "Add Hospital", 
+                "Remove Hospital" 
+            };
 
             Console.WriteLine("What do you want to do ? :");
             PrintOptions(adminOptions);

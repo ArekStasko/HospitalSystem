@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using HospitalRegistrationApp.DataAccess.models;
+using System.Linq;
 
 namespace HospitalRegistrationApp.Views
 {
@@ -12,20 +13,25 @@ namespace HospitalRegistrationApp.Views
             Console.WriteLine(String.Join(" | ", item));
         }
 
+
         public void PrintHospitals(IEnumerable<Hospital> hospitals)
         {
             Console.WriteLine("All hospitals :");
-            
-            foreach(var hospital in hospitals)
+            Console.WriteLine(hospitals.Count());
+            foreach(var hospital in hospitals.ToList())
             {
                 PrintItem(hospital.ConvertToDataRow());
             }
         }
 
+        public void PrintHospitals(Hospital hospital)
+        {
+            Console.WriteLine("---");
+            PrintItem(hospital.ConvertToDataRow());
+        }
+
         public void PrintDoctors(IEnumerable<Doctor> doctors)
         {
-            Console.WriteLine("All doctors :");
-
             foreach (var doctor in doctors)
             {
                 PrintItem(doctor.ConvertToDataRow());

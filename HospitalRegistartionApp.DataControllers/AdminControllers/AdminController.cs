@@ -21,43 +21,58 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             switch (userSelection)
             {
                 case 1:
-                    AddDoctor();
-                    GetDoctors();
+                    ShowHospitalsAndDoctors();
                     break;
                 case 2:
-                    RemoveDoctor();
+                    AddDoctor();
                     break;
                 case 3:
-                    AddHospital();
-                    GetHospitals();
+                    RemoveDoctor();
                     break;
                 case 4:
+                    AddHospital();
+                    break;
+                case 5:
                     RemoveHospital();
                     break;
             }
 
         }
 
-        private void GetDoctors()
+        private void ShowHospitalsAndDoctors()
         {
-            var dataProvider = new DoctorDataAccess();
-            var doctors = dataProvider.GetDoctors();
+            var doctorDataProvider = new DoctorDataProvider();
+            var hospitalDataProvider = new HospitalsDataProvider();
+
+            var hospitals = hospitalDataProvider.GetHospitals();
+            var doctors = doctorDataProvider.GetDoctors();
 
             var showProvider = new ShowProvider();
-            showProvider.PrintDoctors(doctors);
+            foreach (var hospital in hospitals)
+            {
+                showProvider.PrintHospitals(hospital);
+                var HospitalDoctors = doctors.Where(doctor => doctor.HospitalID == hospital.HospitalID);
+                if(HospitalDoctors.Count() > 0)
+                {
+                    Console.WriteLine($"{hospital.HospitalName} hospital doctors :");
+                    showProvider.PrintDoctors(HospitalDoctors);
+                }
+                else Console.WriteLine($"0 {hospital.HospitalName} hospital doctors");
+            }
+
         }
 
         private void AddDoctor()
         {
-            var dataProvider = new DoctorDataAccess();
+            var dataProvider = new DoctorDataProvider();
             List<string> newDoctorData = new List<string>();
 
-            string[] dataToCollect = new string[] 
-            { 
+            string[] dataToCollect = new string[]
+            {
             "Doctor ID",
             "Doctor firstName",
             "Doctor lastName",
-            "Hospital Name where doctor work"
+            "ID of hospital where doctor work"
             };
 
             try
@@ -71,7 +86,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
                 var newDoctor = new Doctor(newDoctorData);
                 dataProvider.AddDoctor(newDoctor);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -79,7 +94,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
 
         private void RemoveDoctor()
         {
-            var dataProvider = new DoctorDataAccess();
+            var dataProvider = new DoctorDataProvider();
 
             Console.WriteLine("Please provide ID of hospital to remove");
             string providedData = Console.ReadLine();
@@ -97,15 +112,6 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             }
         }
 
-        private void GetHospitals()
-        {
-            var dataProvider = new HospitalsDataProvider();
-            var hospitals = dataProvider.GetHospitals();
-
-            var showProvider = new ShowProvider();
-            showProvider.PrintHospitals(hospitals);
-        }
-
         private void AddHospital()
         {
             var dataProvider = new HospitalsDataProvider();
@@ -114,6 +120,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             string[] dataToCollect = new string[] 
             {
                 "Hospital ID",
+                "Hospital Name",
                 "Online Prescriptions availability : Yes/No",
                 "Hospital Adress",
                 "Hospital Opening Time",

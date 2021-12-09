@@ -43,10 +43,8 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
 
             foreach(string line in File.ReadLines(HospitalsFilePath))
             {
-                Console.WriteLine(line);
                 if (!string.IsNullOrWhiteSpace(line))
                 {
-                    Console.WriteLine(line);
                     List<string> hospitalData = new List<string>(line.Split(separator.ToCharArray()));
                     Hospital newHospital = new Hospital(hospitalData);
                     yield return newHospital;

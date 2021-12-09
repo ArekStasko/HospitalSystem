@@ -13,7 +13,7 @@ namespace HospitalRegistrationApp.Tests.DataAccess
         [SetUp]
         public void BeforeEveryTest()
         {
-            var DoctorsDataProvider = new DoctorDataAccess();
+            var DoctorsDataProvider = new DoctorDataProvider();
 
             var Doctors = DoctorsDataProvider.GetDoctors().ToList();
 
@@ -26,7 +26,7 @@ namespace HospitalRegistrationApp.Tests.DataAccess
         [Test]
         public void AddDoctor_Should_AddOneDoctor()
         {
-            var DoctorsDataProvider = new DoctorDataAccess();
+            var DoctorsDataProvider = new DoctorDataProvider();
             List<string> newDoctorData = new List<string>()
             {
                 "2137",
@@ -45,7 +45,7 @@ namespace HospitalRegistrationApp.Tests.DataAccess
         [Test]
         public void RemoveDoctor_Should_RemoveOneDoctor()
         {
-            var DoctorsDataProvider = new DoctorDataAccess();
+            var DoctorsDataProvider = new DoctorDataProvider();
             List<string> newDoctorData = new List<string>()
             {
                 "132",

@@ -5,10 +5,10 @@ namespace HospitalRegistrationApp.DataAccess.models
 {
     public class Doctor : AbstractModel
     {
-        public int DoctorID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int HospitalID { get; set; }
+        public int DoctorID { get; }
+        public string FirstName { get; }
+        public string LastName { get; }
+        public int HospitalID { get; }
         
 
         public Doctor(List<string> doctorData)

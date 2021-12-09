@@ -5,25 +5,28 @@ namespace HospitalRegistrationApp.DataAccess.models
 {
     public class Hospital : AbstractModel
     {
-        public int HospitalID { get; set; }
-        public bool IsOnlinePrescriptions { get; set; }
-        public string HospitalAdress { get; set; }
-        public string HospitalOpeningTime { get; set; }
-        public string HospitalClosingTime { get; set; }
+        public int HospitalID { get; }
+        public bool IsOnlinePrescriptions { get; }
+        public string HospitalAdress { get; }
+        public string HospitalOpeningTime { get; }
+        public string HospitalClosingTime { get; }
+        public string HospitalName { get; }
 
         public Hospital(List<string> hospitalData)
         {
             HospitalID = Int32.Parse(hospitalData[0]);
-            IsOnlinePrescriptions = hospitalData[1] == "Yes";
-            HospitalAdress = hospitalData[2];
-            HospitalOpeningTime = hospitalData[3];
-            HospitalClosingTime = hospitalData[4];
+            HospitalName = hospitalData[1];
+            IsOnlinePrescriptions = hospitalData[2] == "Yes";
+            HospitalAdress = hospitalData[3];
+            HospitalOpeningTime = hospitalData[4];
+            HospitalClosingTime = hospitalData[5];
         }
 
         public override string[] ConvertToDataRow()
         {
             return new[] { 
                 HospitalID.ToString(), 
+                HospitalName,
                 IsOnlinePrescriptions ? "Yes" : "No", 
                 HospitalAdress,
                 HospitalOpeningTime,

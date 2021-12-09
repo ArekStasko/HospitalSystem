@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
 {
-    public class DoctorDataAccess
+    public class DoctorDataProvider
     {
         private const string DoctorsFilePath = @".\doctors.txt";
         private const string separator = "|";

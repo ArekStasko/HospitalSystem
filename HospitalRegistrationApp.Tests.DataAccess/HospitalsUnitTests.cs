@@ -29,6 +29,7 @@ namespace HospitalRegistrationApp.Tests.DataAccess
             var HospitalsDataProvider = new HospitalsDataProvider();
             List<string> hospitalData = new List<string>() {
                 "125",
+                "Uniwersytecki",
                 "No",
                 "Ul. makreli 312",
                 "9:00",
@@ -47,7 +48,8 @@ namespace HospitalRegistrationApp.Tests.DataAccess
         {
             var HospitalsDataProvider = new HospitalsDataProvider();
             List<string> hospitalData = new List<string>() { 
-                "904", 
+                "904",
+                "Uniwersytecki",
                 "No", 
                 "Ul. makreli 312", 
                 "9:00", 
