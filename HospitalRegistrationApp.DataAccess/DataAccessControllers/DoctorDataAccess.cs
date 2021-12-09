@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using HospitalRegistrationApp.DataAccess.models;
+using System.Collections.Generic;
 
 namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
 {
@@ -28,20 +29,37 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
             File.AppendAllText(DoctorsFilePath, line + Environment.NewLine);
         }
 
+        private void AddDoctors(List<Doctor> doctorsToAdd)
+        {
+            foreach(var doctor in doctorsToAdd)
+            {
+                AddDoctor(doctor);
+            }
+        }
+
+        public void RemoveDoctor(Doctor doctorToDelete)
+        {
+            InitializeDoctorsFile();
+            var doctors = GetDoctors().ToList();
+            doctors.Remove(doctorToDelete);
+            File.WriteAllText(DoctorsFilePath, String.Empty);
+
+            AddDoctors(doctors);
+        }
         public IEnumerable<Doctor> GetDoctors()
         {
             InitializeDoctorsFile();
 
-            foreach(var line in File.ReadAllLines(DoctorsFilePath))
+            foreach(string line in File.ReadLines(DoctorsFilePath))
             {
-                if (!string.IsNullOrEmpty(line))
+                if (!string.IsNullOrWhiteSpace(line))
                 {
                     List<string> doctorData = new List<string>(line.Split(separator.ToCharArray()));
-                    Doctor doctor = new Doctor(doctorData);
-                    yield return doctor;
+                    Doctor newDoctor = new Doctor(doctorData);
+                    yield return newDoctor;
                 }
             }
 
-        } 
+        }
     }
 }

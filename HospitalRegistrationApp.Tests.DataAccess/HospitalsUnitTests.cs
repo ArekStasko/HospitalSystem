@@ -8,7 +8,7 @@ using FluentAssertions;
 namespace HospitalRegistrationApp.Tests.DataAccess
 {
     [TestFixture]
-    public class DataAccessTests
+    public class HospitalsAccessTests
     {
         [SetUp]
         public void BeforeEveryTest()
@@ -24,7 +24,7 @@ namespace HospitalRegistrationApp.Tests.DataAccess
         }
 
         [Test]
-        public void AddHospital_should_AddOneHospital()
+        public void AddHospital_Should_AddOneHospital()
         {
             var HospitalsDataProvider = new HospitalsDataProvider();
             List<string> hospitalData = new List<string>() {
@@ -39,8 +39,7 @@ namespace HospitalRegistrationApp.Tests.DataAccess
 
             HospitalsDataProvider.AddHospital(hospital);
             IEnumerable<Hospital> hospitals = HospitalsDataProvider.GetHospitals();
-            bool IsAdded = hospitals.Any(item => item.HospitalID == hospital.HospitalID);
-            Assert.IsTrue(IsAdded);
+            hospitals.Should().Contain(hospital);
         }
 
         [Test]
@@ -60,7 +59,7 @@ namespace HospitalRegistrationApp.Tests.DataAccess
             HospitalsDataProvider.AddHospital(hospital);
             HospitalsDataProvider.RemoveHospital(hospital);
 
-            var HospitalsFromFile = HospitalsDataProvider.GetHospitals().ToList();
+            var HospitalsFromFile = HospitalsDataProvider.GetHospitals();
             HospitalsFromFile.Should().NotContain(hospital);
         }
     }

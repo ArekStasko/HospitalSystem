@@ -25,6 +25,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
                     GetDoctors();
                     break;
                 case 2:
+                    RemoveDoctor();
                     break;
                 case 3:
                     AddHospital();
@@ -71,6 +72,26 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
                 dataProvider.AddDoctor(newDoctor);
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private void RemoveDoctor()
+        {
+            var dataProvider = new DoctorDataAccess();
+
+            Console.WriteLine("Please provide ID of hospital to remove");
+            string providedData = Console.ReadLine();
+            int DoctorID = Int32.Parse(providedData);
+            try
+            {
+                IEnumerable<Doctor> doctors = dataProvider.GetDoctors();
+                Doctor doctorToDelete = doctors.Single(item => item.DoctorID == DoctorID);
+                dataProvider.RemoveDoctor(doctorToDelete);
+                Console.WriteLine("Successfully removed doctor");
+            }
+            catch (Exception e)
             {
                 throw e;
             }

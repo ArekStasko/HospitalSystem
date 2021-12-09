@@ -8,14 +8,15 @@ namespace HospitalRegistrationApp.DataAccess.models
         public int DoctorID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string HospitalName { get; set; }
+        public int HospitalID { get; set; }
+        
 
         public Doctor(List<string> doctorData)
         {
             DoctorID = Int32.Parse(doctorData[0]);
             FirstName = doctorData[1];
             LastName = doctorData[2];
-            HospitalName = doctorData[3];
+            HospitalID = Int32.Parse(doctorData[3]);
         }
         
         public override string[] ConvertToDataRow()
@@ -24,7 +25,7 @@ namespace HospitalRegistrationApp.DataAccess.models
                 DoctorID.ToString(),
                 FirstName,
                 LastName,
-                HospitalName
+                HospitalID.ToString()
             };
         }
 
@@ -33,6 +34,24 @@ namespace HospitalRegistrationApp.DataAccess.models
             return DoctorID == other.DoctorID;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            if (obj.GetType() != GetType())
+                return false;
+
+            return Equals((Doctor)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return DoctorID;
+        }
     }
 
 }

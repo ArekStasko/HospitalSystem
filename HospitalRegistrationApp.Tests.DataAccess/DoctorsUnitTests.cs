@@ -8,32 +8,59 @@ using FluentAssertions;
 namespace HospitalRegistrationApp.Tests.DataAccess
 {
     [TestFixture]
-    public class DoctorsAccessTests
+    public class DoctorsUnitTests
     {
         [SetUp]
         public void BeforeEveryTest()
         {
-            
+            var DoctorsDataProvider = new DoctorDataAccess();
+
+            var Doctors = DoctorsDataProvider.GetDoctors().ToList();
+
+            foreach (var doctor in Doctors)
+            {
+                DoctorsDataProvider.RemoveDoctor(doctor);
+            }
         }
 
         [Test]
-        public void AddDoctor_should_AddOneDoctor()
+        public void AddDoctor_Should_AddOneDoctor()
         {
             var DoctorsDataProvider = new DoctorDataAccess();
             List<string> newDoctorData = new List<string>()
             {
-                "12",
+                "2137",
                 "Pawel",
                 "Jan",
-                "Getrudy"
+                "7312"
             };
 
             var doctor = new Doctor(newDoctorData);
 
             DoctorsDataProvider.AddDoctor(doctor);
-            IEnumerable<Doctor> doctors = DoctorsDataProvider.GetDoctors();
-            bool IsAdded = doctors.Any(item => item.DoctorID == doctor.DoctorID);
-            Assert.IsTrue(IsAdded);
+            var doctors = DoctorsDataProvider.GetDoctors();
+            doctors.Should().Contain(doctor);
+        }
+
+        [Test]
+        public void RemoveDoctor_Should_RemoveOneDoctor()
+        {
+            var DoctorsDataProvider = new DoctorDataAccess();
+            List<string> newDoctorData = new List<string>()
+            {
+                "132",
+                "Albert",
+                "Nekko",
+                "231"
+            };
+
+            var doctor = new Doctor(newDoctorData);
+
+            DoctorsDataProvider.AddDoctor(doctor);
+            DoctorsDataProvider.RemoveDoctor(doctor);
+
+            var doctors = DoctorsDataProvider.GetDoctors();
+            doctors.Should().NotContain(doctor);
         }
 
     }

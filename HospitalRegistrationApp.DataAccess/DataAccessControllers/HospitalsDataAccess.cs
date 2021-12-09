@@ -22,21 +22,6 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
             }
         }
 
-        public IEnumerable<Hospital> GetHospitals()
-        {
-            InitializeHospitalsFile();
-
-            foreach(var line in File.ReadLines(HospitalsFilePath))
-            {
-                if (!string.IsNullOrEmpty(line))
-                {
-                    List<string> hospitalData = new List<string>(line.Split(separator.ToCharArray()));
-                    Hospital newHospital = new Hospital(hospitalData);
-                    yield return newHospital;
-                }
-            }
-        }
-
         public void AddHospital(Hospital newHospital)
         {
             InitializeHospitalsFile();
@@ -44,11 +29,28 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
             File.AppendAllText(HospitalsFilePath, line + Environment.NewLine);
         }
 
-        public void AddHospitals(List<Hospital> hospitals)
+        private void AddHospitals(List<Hospital> hospitals)
         {
-            foreach(var hospital in hospitals)
+            foreach (var hospital in hospitals)
             {
                 AddHospital(hospital);
+            }
+        }
+
+        public IEnumerable<Hospital> GetHospitals()
+        {
+            InitializeHospitalsFile();
+
+            foreach(string line in File.ReadLines(HospitalsFilePath))
+            {
+                Console.WriteLine(line);
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    Console.WriteLine(line);
+                    List<string> hospitalData = new List<string>(line.Split(separator.ToCharArray()));
+                    Hospital newHospital = new Hospital(hospitalData);
+                    yield return newHospital;
+                }
             }
         }
 
@@ -58,12 +60,6 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
             var hospitals = GetHospitals().ToList();
             hospitals.Remove(hospitalToRemove);
             File.WriteAllText(HospitalsFilePath, String.Empty);
-
-            foreach(var hospital in hospitals)
-            {
-                Console.WriteLine(hospital.HospitalID);
-                Console.WriteLine($"hospital to remove: {hospitalToRemove.HospitalID}");
-            }
 
             AddHospitals(hospitals);
         }
