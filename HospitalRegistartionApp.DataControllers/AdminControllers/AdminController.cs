@@ -69,19 +69,28 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
 
             string[] dataToCollect = new string[]
             {
-            "Doctor ID",
             "Doctor firstName",
             "Doctor lastName",
-            "ID of hospital where doctor work"
             };
 
             try
             {
+                int newDoctorID = GetID("Provide doctor ID");
+
+                var doctors = dataProvider.GetDoctors();
+                while (doctors.Any(doctor => doctor.DoctorID == newDoctorID))
+                {
+                    newDoctorID = GetID($"You already have doctor with {newDoctorID} ID");
+                }
+
+                newDoctorData.Add(newDoctorID.ToString());
+
                 foreach (var dataQuery in dataToCollect)
                 {
                     Console.WriteLine($"Please provide {dataQuery} :");
                     newDoctorData.Add(Console.ReadLine());
                 }
+                newDoctorData.Add(GetHospitalID().ToString());
 
                 var newDoctor = new Doctor(newDoctorData);
                 dataProvider.AddDoctor(newDoctor);
