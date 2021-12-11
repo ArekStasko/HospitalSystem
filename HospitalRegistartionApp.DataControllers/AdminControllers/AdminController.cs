@@ -48,6 +48,8 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             var doctors = doctorDataProvider.GetDoctors();
 
             var showProvider = new ShowProvider();
+
+
             foreach (var hospital in hospitals)
             {
                 showProvider.PrintHospitals(hospital);
@@ -105,7 +107,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
         {
             var dataProvider = new DoctorDataProvider();
 
-            Console.WriteLine("Please provide ID of hospital to remove");
+            Console.WriteLine("Please provide ID of doctor to remove");
             string providedData = Console.ReadLine();
             int DoctorID = Int32.Parse(providedData);
             try
@@ -128,21 +130,28 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             List<string> newHospitalData = new List<string>() { };
             string[] dataToCollect = new string[] 
             {
-                "Hospital ID",
                 "Hospital Name",
-                "Online Prescriptions availability : Yes/No",
                 "Hospital Adress",
                 "Hospital Opening Time",
-                "Hospital Closing time"
+                "Hospital Closing time",
             };
 
-            // TODO: add defensive programming validation
             try
             {
+                newHospitalData.Add(GetHospitalID().ToString());
+
                 foreach (var dataQuery in dataToCollect)
                 {
                     Console.WriteLine($"Please provide {dataQuery} :");
                     newHospitalData.Add(Console.ReadLine());
+                }
+
+                Console.WriteLine("Online Prescriptions availability : Yes/No");
+                string prescAvailability = Console.ReadLine();
+                while(prescAvailability == "Yes" || prescAvailability == "No")
+                {
+                    Console.WriteLine("Please provide 'Yes' or 'No' :");
+                    prescAvailability = Console.ReadLine();
                 }
 
                 var hospital = new Hospital(newHospitalData);

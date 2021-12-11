@@ -30,10 +30,10 @@ namespace HospitalRegistrationApp.Tests.DataAccess
             List<string> hospitalData = new List<string>() {
                 "125",
                 "Uniwersytecki",
-                "No",
                 "Ul. makreli 312",
                 "9:00",
-                "18:00"
+                "18:00",
+                "No"
             };
 
             Hospital hospital = new Hospital(hospitalData);
@@ -50,10 +50,10 @@ namespace HospitalRegistrationApp.Tests.DataAccess
             List<string> hospitalData = new List<string>() { 
                 "904",
                 "Uniwersytecki",
-                "No", 
                 "Ul. makreli 312", 
                 "9:00", 
-                "18:00" 
+                "18:00",
+                "No"
             };
 
             Hospital hospital = new Hospital(hospitalData);

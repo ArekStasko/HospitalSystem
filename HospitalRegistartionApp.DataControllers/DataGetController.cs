@@ -7,6 +7,15 @@ namespace HospitalRegistrationApp.DataControllers
 {
     public class DataGetController
     {
+        public int GetLoginSelection()
+        {
+            OptionsProvider options = new OptionsProvider();
+            options.PrintStartingOptions();
+            int userSelection = GetUserSelection();
+            Console.Clear();
+            return userSelection;
+        }
+
         protected int GetUserSelection()
         {
             string providedData = Console.ReadLine();
@@ -38,26 +47,14 @@ namespace HospitalRegistrationApp.DataControllers
             var hospitalProvider = new HospitalsDataProvider();
             int HospitalID = GetID("Provide Hospital ID where doctor Work");
             var hospitals = hospitalProvider.GetHospitals();
- 
-            bool IsCorrectID = hospitals.Any(hospital => hospital.HospitalID == HospitalID);
 
-            if (IsCorrectID)
+            while (hospitals.Any(hospital => hospital.HospitalID == HospitalID))
             {
-                return HospitalID;
+                HospitalID = GetID($"You already have hospital with {HospitalID} ID");
             }
-            else
-            {
-                throw new Exception($"You don't have hospital with {HospitalID} ID");
-            }
+
+            return HospitalID;
         }
 
-        public int GetLoginSelection()
-        {
-            OptionsProvider options = new OptionsProvider();
-            options.PrintStartingOptions();
-            int userSelection = GetUserSelection();
-            Console.Clear();
-            return userSelection;
-        }
     }
 }

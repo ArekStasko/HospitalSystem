@@ -13,20 +13,10 @@ namespace HospitalRegistrationApp.Views
             Console.WriteLine(String.Join(" | ", item));
         }
 
-
-        public void PrintHospitals(IEnumerable<Hospital> hospitals)
-        {
-            Console.WriteLine("All hospitals :");
-            Console.WriteLine(hospitals.Count());
-            foreach(var hospital in hospitals.ToList())
-            {
-                PrintItem(hospital.ConvertToDataRow());
-            }
-        }
-
         public void PrintHospitals(Hospital hospital)
         {
             Console.WriteLine("---");
+            Console.WriteLine("| ID | Hospital Name | Adress | Opening Time | Closing Time | Online Prescriptions |");
             PrintItem(hospital.ConvertToDataRow());
         }
 

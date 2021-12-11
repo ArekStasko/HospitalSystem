@@ -16,10 +16,10 @@ namespace HospitalRegistrationApp.DataAccess.models
         {
             HospitalID = Int32.Parse(hospitalData[0]);
             HospitalName = hospitalData[1];
-            IsOnlinePrescriptions = hospitalData[2] == "Yes";
-            HospitalAdress = hospitalData[3];
-            HospitalOpeningTime = hospitalData[4];
-            HospitalClosingTime = hospitalData[5];
+            HospitalAdress = hospitalData[2];
+            HospitalOpeningTime = hospitalData[3];
+            HospitalClosingTime = hospitalData[4];
+            IsOnlinePrescriptions = hospitalData[5] == "Yes";
         }
 
         public override string[] ConvertToDataRow()
@@ -27,10 +27,10 @@ namespace HospitalRegistrationApp.DataAccess.models
             return new[] { 
                 HospitalID.ToString(), 
                 HospitalName,
-                IsOnlinePrescriptions ? "Yes" : "No", 
                 HospitalAdress,
                 HospitalOpeningTime,
-                HospitalClosingTime
+                HospitalClosingTime,
+                IsOnlinePrescriptions ? "Yes" : "No"
             };
         }
 
