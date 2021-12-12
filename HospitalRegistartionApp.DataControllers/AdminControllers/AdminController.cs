@@ -35,6 +35,9 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
                 case 5:
                     RemoveHospital();
                     break;
+                default:
+                    Console.WriteLine("You chose wrong option number");
+                    break;
             }
 
         }

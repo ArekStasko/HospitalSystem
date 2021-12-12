@@ -12,4 +12,3 @@ C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistartionApp.Da
 C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistartionApp.DataControllers\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataControllers.pdb
 C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistartionApp.DataControllers\bin\Debug\netcoreapp3.1\HospitalRegistrationApp.Views.dll
 C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistartionApp.DataControllers\bin\Debug\netcoreapp3.1\HospitalRegistrationApp.Views.pdb
-C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistartionApp.DataControllers\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.DataControllers.csproj.CopyComplete

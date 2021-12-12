@@ -13,7 +13,7 @@ namespace HospitalRegistrationApp
             DataGetController getDataController = new DataGetController();
             int selectedOption = getDataController.GetLoginSelection();
 
-            // For now doctor and patient Controllers is empty
+            // For now patient Controllers is empty
 
             if (selectedOption == 1)
             {
@@ -23,7 +23,7 @@ namespace HospitalRegistrationApp
             else if (selectedOption == 2)
             {
                 DoctorController doctorController = new DoctorController();
-                doctorController.DoctorTestInfo();
+                doctorController.DoctorAuthorization();
             }
             else if (selectedOption == 3)
             {
