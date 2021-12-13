@@ -7,22 +7,22 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
 {
     public class DoctorController : DataGetController
     {
-        private int DoctorID { get; set; }
+        private int DoctorHospitalID { get; set; }
         public void DoctorAuthorization()
         {
             var dataProvider = new DoctorDataProvider();
             int doctorID = GetID("Please provide your ID :");
 
             var doctors = dataProvider.GetDoctors();
-            if(doctors.Any(doctor => doctor.DoctorID == doctorID))
-            {
-                DoctorID = doctorID;
+            try { 
+                var doctor = doctors.First(doc => doc.DoctorID == doctorID);
+                DoctorHospitalID = doctor.HospitalID;
                 Console.WriteLine($"You are logged in as {doctorID} doctor");
                 GetDoctorOptions();
             }
-            else
+            catch(Exception)
             {
-                Console.WriteLine($"There are no doctor with {doctorID} ID");
+                throw new Exception($"There are no doctor with {doctorID} ID");
             }
         }
 
@@ -35,7 +35,7 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
             switch (userSelection)
             {
                 case 1:
-                    Console.WriteLine("You chose option number 1");
+                    GetDoctorHospital();
                     break;
                 case 2:
                     Console.WriteLine("You chose option number 2");
@@ -44,6 +44,18 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
                     Console.WriteLine("You chose wrong option number");
                     break;
             }
+        }
+
+        private void GetDoctorHospital()
+        {
+            var dataProvider = new HospitalsDataProvider();
+            var hospitals = dataProvider.GetHospitals();
+
+            var doctorHospital = hospitals.First(hospital => hospital.HospitalID == DoctorHospitalID);
+
+            var showProvider = new ShowProvider();
+            Console.WriteLine("Your hospital :");
+            showProvider.PrintHospitals(doctorHospital);
         }
     }
 }
