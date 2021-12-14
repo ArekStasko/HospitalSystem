@@ -18,7 +18,7 @@ namespace HospitalRegistrationApp
             if (selectedOption == 1)
             {
                 PatientController patientController = new PatientController();
-                patientController.PatientTestInfo();
+                patientController.SetPatientHospital();
             }
             else if (selectedOption == 2)
             {

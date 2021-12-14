@@ -20,6 +20,17 @@ namespace HospitalRegistrationApp.Views
             PrintItem(hospital.ConvertToDataRow());
         }
 
+        public void PrintHospitals(IEnumerable<Hospital> hospitals)
+        {
+            Console.WriteLine("| ID | Hospital Name | Adress | Opening Time | Closing Time | Online Prescriptions |");
+            Console.WriteLine("---");
+            foreach (var hospital in hospitals)
+            { 
+                PrintItem(hospital.ConvertToDataRow());
+                Console.WriteLine("---");
+            }
+        }
+
         public void PrintDoctors(IEnumerable<Doctor> doctors)
         {
             foreach (var doctor in doctors)

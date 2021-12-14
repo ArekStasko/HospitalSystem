@@ -23,8 +23,6 @@ namespace HospitalRegistrationApp.Views
                 "Add Hospital", 
                 "Remove Hospital" 
             };
-
-            Console.WriteLine("What do you want to do ? :");
             PrintOptions(adminOptions);
         }
 
@@ -35,12 +33,35 @@ namespace HospitalRegistrationApp.Views
                 "Show my hospital",
                 "Show visits assigned to me"
             };
-            Console.WriteLine("What do you want to do ?");
             PrintOptions(doctorOptions);
+        }
+
+        public void PrintPatientOptions()
+        {
+            string[] patientOptions = new string[]
+            {
+                "Show hospital options",
+                "Show my visits",
+                "Sign up for visit"
+            };
+            PrintOptions(patientOptions);
+        }
+
+        public void PrintHospitalOptions()
+        {
+            string[] hospitalOptions = new string[]
+            {
+                "Change my hospital",
+                "Show main info about my hospital",
+                "Show doctors assinged to my hospital",
+                "Show available visits"
+            };
+            PrintOptions(hospitalOptions);
         }
 
         private void PrintOptions(string[] options)
         {
+            Console.WriteLine("What do you want to do ? :");
             for (int i = 0; i < options.Length; i++)
             {
                 Console.WriteLine($"{i + 1}. {options[i]}");

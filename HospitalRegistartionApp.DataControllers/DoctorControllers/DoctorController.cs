@@ -22,7 +22,7 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
             }
             catch(Exception)
             {
-                throw new Exception($"There are no doctor with {doctorID} ID");
+                throw new Exception($"There is no doctor with {doctorID} ID");
             }
         }
 

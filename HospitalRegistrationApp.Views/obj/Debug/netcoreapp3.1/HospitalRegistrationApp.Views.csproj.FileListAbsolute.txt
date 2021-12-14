@@ -10,3 +10,4 @@ C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.Vi
 C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.Views\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.Views.pdb
 C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.Views\bin\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.dll
 C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.Views\bin\Debug\netcoreapp3.1\HospitalRegistrationApp.DataAccess.pdb
+C:\Users\areks\source\repos\hospital_registration_app\HospitalRegistrationApp.Views\obj\Debug\netcoreapp3.1\HospitalRegistrationApp.Views.csproj.CopyComplete
