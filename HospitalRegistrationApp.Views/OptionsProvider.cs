@@ -21,7 +21,9 @@ namespace HospitalRegistrationApp.Views
                 "Add Doctor", 
                 "Remove Doctor", 
                 "Add Hospital", 
-                "Remove Hospital" 
+                "Remove Hospital",
+                "Add Visit",
+                "Remove visit"
             };
             PrintOptions(adminOptions);
         }

@@ -9,7 +9,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
 {
     public class AdminController : DataGetController
     {
-
+        
         public void GetAdminOptions()
         {
             OptionsProvider options = new OptionsProvider();
@@ -34,6 +34,11 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
                     break;
                 case 5:
                     RemoveHospital();
+                    break;
+                case 6:
+                    AddVisit();
+                    break;
+                case 7:
                     break;
                 default:
                     Console.WriteLine("You chose wrong option number");
@@ -186,6 +191,17 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             {
                 throw e;
             }
+        }
+
+        private void AddVisit()
+        {
+            var visitProvider = new VisitsDataAccess();
+            List<int> visitData = new List<int>();
+            visitData.Add(GetID("Provide Visit ID :"));
+            visitData.Add(GetID("Provide Hospital ID :"));
+
+            Visit visit = new Visit(visitData);
+            visitProvider.AddVisit(visit);
         }
 
 

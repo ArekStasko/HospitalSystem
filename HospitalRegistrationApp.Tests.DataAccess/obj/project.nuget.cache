@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HG5hvIInroXwzpUlE1DZWqr/YEsIVFg4ewePYbAM1cH9J+wehOINkOStc4K8wxLasytC1/DAf+EVWLqubU40Sw==",
+  "dgSpecHash": "SK2r+zCodvkGzyTPQz+2r/Ci7I/jOdCu3StssC+cONoe75e84vU3bNHyBQ4rXxsanGIw9hYL0oJdv+DPmWt+Uw==",
   "success": true,
   "projectFilePath": "C:\\Users\\areks\\source\\repos\\hospital_registration_app\\HospitalRegistrationApp.Tests.DataAccess\\HospitalRegistrationApp.Tests.DataAccess.csproj",
   "expectedPackageFiles": [
