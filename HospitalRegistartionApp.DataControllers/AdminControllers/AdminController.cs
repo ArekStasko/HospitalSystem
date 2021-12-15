@@ -21,24 +21,28 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             switch (userSelection)
             {
                 case 1:
-                    ShowHospitalsAndDoctors();
+                    GetHospitalsAndDoctors();
                     break;
                 case 2:
-                    AddDoctor();
+                    GetVisits();
                     break;
                 case 3:
-                    RemoveDoctor();
+                    AddDoctor();
                     break;
                 case 4:
-                    AddHospital();
+                    RemoveDoctor();
                     break;
                 case 5:
-                    RemoveHospital();
+                    AddHospital();
                     break;
                 case 6:
-                    AddVisit();
+                    RemoveHospital();
                     break;
                 case 7:
+                    AddVisit();
+                    break;
+                case 8:
+                    RemoveVisit();
                     break;
                 default:
                     Console.WriteLine("You chose wrong option number");
@@ -47,7 +51,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
 
         }
 
-        private void ShowHospitalsAndDoctors()
+        private void GetHospitalsAndDoctors()
         {
             var doctorDataProvider = new DoctorDataProvider();
             var hospitalDataProvider = new HospitalsDataProvider();
@@ -69,6 +73,16 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
                 }
                 else Console.WriteLine($"0 {hospital.HospitalName} hospital doctors");
             }
+
+        }
+
+        private void GetVisits()
+        {
+            var visitProvider = new VisitsDataAccess();
+            var showProvider = new ShowProvider();
+            var visits = visitProvider.GetVisits();
+
+            showProvider.PrintVisits(visits);
 
         }
 
@@ -204,6 +218,22 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             visitProvider.AddVisit(visit);
         }
 
+        private void RemoveVisit()
+        {
+            var visitProvider = new VisitsDataAccess();
+            int visitID = GetID("Please provide visit ID to remove");
+
+            var visits = visitProvider.GetVisits();
+            try
+            {
+                var VisitToRemove = visits.First(visit => visit.VisitID == visitID);
+                visitProvider.RemoveVisit(VisitToRemove);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"There is no visit with {visitID} to remove");
+            }
+        }
 
     }
 }

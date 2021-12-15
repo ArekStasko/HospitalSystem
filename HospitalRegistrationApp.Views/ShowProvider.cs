@@ -38,5 +38,20 @@ namespace HospitalRegistrationApp.Views
                 PrintItem(doctor.ConvertToDataRow());
             }
         }
+
+        public void PrintVisits(IEnumerable<Visit> visits)
+        {
+            foreach(var visit in visits)
+            {
+                if (visit.Available)
+                {
+                    PrintItem(visit.MainInfoToDataRow());
+                }
+                else
+                {
+                    PrintItem(visit.AllInfoToDataRow());
+                }
+            }
+        }
     }
 }

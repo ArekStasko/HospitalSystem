@@ -18,6 +18,7 @@ namespace HospitalRegistrationApp.Views
             string[] adminOptions = new string[] 
             { 
                 "Show Hospitals with Doctors", 
+                "Show Visits",
                 "Add Doctor", 
                 "Remove Doctor", 
                 "Add Hospital", 
