@@ -8,6 +8,7 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
     public class DoctorController : DataGetController
     {
         private int DoctorHospitalID { get; set; }
+        private int DoctorID { get; set; }
         public void DoctorAuthorization()
         {
             var dataProvider = new DoctorDataProvider();
@@ -17,12 +18,13 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
             try { 
                 var doctor = doctors.First(doc => doc.DoctorID == doctorID);
                 DoctorHospitalID = doctor.HospitalID;
+                DoctorID = doctor.DoctorID;
                 Console.WriteLine($"You are logged in as {doctorID} doctor");
                 GetDoctorOptions();
             }
-            catch(Exception)
+            catch(Exception e)
             {
-                throw new Exception($"There is no doctor with {doctorID} ID");
+                throw e;
             }
         }
 
@@ -38,7 +40,7 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
                     GetDoctorHospital();
                     break;
                 case 2:
-                    Console.WriteLine("You chose option number 2");
+                    GetDoctorVisits();
                     break;
                 default:
                     Console.WriteLine("You chose wrong option number");
@@ -56,6 +58,23 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
             var showProvider = new ShowProvider();
             Console.WriteLine("Your hospital :");
             showProvider.PrintHospitals(doctorHospital);
+        }
+
+        private void GetDoctorVisits()
+        {
+            var visitsDataProvider = new VisitsDataAccess();
+            var visits = visitsDataProvider.GetVisits();
+
+            try
+            {
+                var visit = visits.First(visit => visit.DoctorID == DoctorID);
+                var showProvider = new ShowProvider();
+                showProvider.PrintVisit(visit);
+            }
+            catch (Exception)
+            {
+                throw new Exception("You don't have any visits");
+            }
         }
     }
 }

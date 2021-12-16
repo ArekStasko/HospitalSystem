@@ -210,9 +210,20 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
         private void AddVisit()
         {
             var visitProvider = new VisitsDataAccess();
-            List<int> visitData = new List<int>();
-            visitData.Add(GetID("Provide Visit ID :"));
-            visitData.Add(GetID("Provide Hospital ID :"));
+            List<string> visitData = new List<string>();
+            var visits = visitProvider.GetVisits();
+
+            int visitID = GetID("Provide Visit ID :");
+
+            while(visits.Any(visit=>visit.VisitID == visitID))
+            {
+                visitID = GetID($"There is already visit with {visitID} ID");
+            }
+          
+            visitData.Add(visitID.ToString());
+            visitData.Add(GetID("Provide Hospital ID :").ToString());
+            Console.WriteLine("Provide time of visit");
+            visitData.Add(Console.ReadLine());
 
             Visit visit = new Visit(visitData);
             visitProvider.AddVisit(visit);

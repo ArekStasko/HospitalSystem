@@ -58,7 +58,36 @@ namespace HospitalRegistrationApp.DataControllers.PatientControllers
 
         private void SignUpForVisit()
         {
-            Console.WriteLine("Sign up for visit");
+            var visitDataProvider = new VisitsDataAccess();
+            var showProvider = new ShowProvider();
+            var visits = visitDataProvider.GetVisits();
+            visits = visits.Where(visit => visit.Available && visit.HospitalID == HospitalID);
+            Console.WriteLine("Available Visits :");
+            showProvider.PrintVisits(visits);
+
+            int visitID = GetID("Select visit by ID :");
+
+            while(!visits.Any(visit => visit.VisitID == visitID))
+            {
+                visitID = GetID($"There is no visit with {visitID} ID");
+            }
+
+            var visitToForm = visits.First(visit => visit.VisitID == visitID);
+
+            var doctorsDataProvider = new DoctorDataProvider();
+
+            var doctors = doctorsDataProvider.GetDoctorsByHospitalID(HospitalID);
+            showProvider.PrintDoctors(doctors);
+            int doctorID = GetID("Provide doctor ID :");
+
+            visitToForm.DoctorID = doctorID;
+            //For now this is only test 'ID'
+            visitToForm.UserID = 123;
+            Console.WriteLine("Describe your problem :");
+            visitToForm.Description = Console.ReadLine();
+            visitToForm.Available = false;
+
+            visitDataProvider.AddVisit(visitToForm);
         }
     }
 }

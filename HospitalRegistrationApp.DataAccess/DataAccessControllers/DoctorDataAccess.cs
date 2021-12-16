@@ -61,5 +61,13 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
             }
 
         }
+
+        public IEnumerable<Doctor> GetDoctorsByHospitalID(int ID)
+        {
+            InitializeDoctorsFile();
+
+            var doctors = GetDoctors();
+            return doctors.Where(doctor => doctor.HospitalID == ID); ;
+        }
     }
 }

@@ -23,7 +23,6 @@ namespace HospitalRegistrationApp.Views
         public void PrintHospitals(IEnumerable<Hospital> hospitals)
         {
             Console.WriteLine("| ID | Hospital Name | Adress | Opening Time | Closing Time | Online Prescriptions |");
-            Console.WriteLine("---");
             foreach (var hospital in hospitals)
             { 
                 PrintItem(hospital.ConvertToDataRow());
@@ -36,21 +35,29 @@ namespace HospitalRegistrationApp.Views
             foreach (var doctor in doctors)
             {
                 PrintItem(doctor.ConvertToDataRow());
+                Console.WriteLine("---");
+            }
+        }
+
+        public void PrintVisit(Visit visit)
+        {
+            if (visit.Available)
+            {
+                PrintItem(visit.MainInfoToDataRow());
+            }
+            else
+            {
+                PrintItem(visit.AllInfoToDataRow());
             }
         }
 
         public void PrintVisits(IEnumerable<Visit> visits)
         {
-            foreach(var visit in visits)
+            Console.WriteLine("| Visit ID | Hospital ID | Time | Available | Doctor ID | User ID | Description |");
+            foreach (var visit in visits)
             {
-                if (visit.Available)
-                {
-                    PrintItem(visit.MainInfoToDataRow());
-                }
-                else
-                {
-                    PrintItem(visit.AllInfoToDataRow());
-                }
+                PrintVisit(visit);
+                Console.WriteLine("---");
             }
         }
     }

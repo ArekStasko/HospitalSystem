@@ -8,23 +8,17 @@ namespace HospitalRegistrationApp.DataAccess.models
     {
         public int VisitID { get; }
         public int HospitalID { get; }
-        public bool Available { get; }
+        public bool Available { get; set; }
+        public string Time { get; }
         public int DoctorID { get; set; }
         public int UserID { get; set; }
         public string Description { get; set; }
-
-   
-        public Visit(List<int> visitData)
-        {
-            VisitID = visitData[0];
-            HospitalID = visitData[1];
-            Available = true;
-        }
 
         public Visit(List<string> visitData)
         {
             VisitID = Int32.Parse(visitData[0]);
             HospitalID = Int32.Parse(visitData[1]);
+            Time = visitData[2];
             Available = true;
         }
 
@@ -34,7 +28,8 @@ namespace HospitalRegistrationApp.DataAccess.models
             {
                 VisitID.ToString(),
                 HospitalID.ToString(),
-                Available ? "Yes" : "No",
+                Time,
+                Available ? "Yes" : "No"
             };
         }
 
@@ -44,6 +39,7 @@ namespace HospitalRegistrationApp.DataAccess.models
             {
                 VisitID.ToString(),
                 HospitalID.ToString(),
+                Time,
                 Available ? "Yes" : "No",
                 DoctorID.ToString(),
                 UserID.ToString(),

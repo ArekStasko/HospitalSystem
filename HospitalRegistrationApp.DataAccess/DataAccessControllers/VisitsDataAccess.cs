@@ -46,7 +46,15 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
         public void AddVisit(Visit visit)
         {
             InitializeFile();
-            string dataToSave = string.Join(separator, visit.MainInfoToDataRow());
+            string dataToSave;
+            if (visit.Available)
+            {
+                dataToSave = string.Join(separator, visit.MainInfoToDataRow());
+            }
+            else
+            {
+                dataToSave = string.Join(separator, visit.AllInfoToDataRow());
+            }
             File.AppendAllText(VisitsFilePath, dataToSave + Environment.NewLine);
         }
 
