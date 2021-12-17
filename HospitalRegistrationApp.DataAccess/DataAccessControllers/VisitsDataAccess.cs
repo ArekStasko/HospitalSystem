@@ -32,7 +32,8 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
                 {
                     List<string> visitData = new List<string>(line.Split(separator.ToCharArray()));
                     Visit visit = new Visit(visitData);
-                    if(!visit.Available)
+                    visit.Available = visitData[3] == "Yes";
+                    if (!visit.Available)
                     {
                         visit.DoctorID = Int32.Parse(visitData[4]);
                         visit.UserID = Int32.Parse(visitData[5]);
@@ -70,6 +71,12 @@ namespace HospitalRegistrationApp.DataAccess.DataAccessControllers
             {
                 AddVisit(visit);
             }
+        }
+
+        public void UpdateVisit(Visit visitToUpdate)
+        {
+            RemoveVisit(visitToUpdate);
+            AddVisit(visitToUpdate);
         }
 
     }

@@ -19,7 +19,6 @@ namespace HospitalRegistrationApp.DataAccess.models
             VisitID = Int32.Parse(visitData[0]);
             HospitalID = Int32.Parse(visitData[1]);
             Time = visitData[2];
-            Available = true;
         }
 
         public string[] MainInfoToDataRow()

@@ -226,6 +226,7 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             visitData.Add(Console.ReadLine());
 
             Visit visit = new Visit(visitData);
+            visit.Available = true;
             visitProvider.AddVisit(visit);
         }
 

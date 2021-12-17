@@ -53,11 +53,18 @@ namespace HospitalRegistrationApp.Views
 
         public void PrintVisits(IEnumerable<Visit> visits)
         {
-            Console.WriteLine("| Visit ID | Hospital ID | Time | Available | Doctor ID | User ID | Description |");
-            foreach (var visit in visits)
+            if (visits.Any())
             {
-                PrintVisit(visit);
-                Console.WriteLine("---");
+                Console.WriteLine("| Visit ID | Hospital ID | Time | Available | Doctor ID | User ID | Description |");
+                foreach (var visit in visits)
+                {
+                    PrintVisit(visit);
+                    Console.WriteLine("---");
+                }
+            }
+            else
+            {
+                throw new Exception("There is no visits");
             }
         }
     }
