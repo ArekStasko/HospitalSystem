@@ -16,37 +16,47 @@ namespace HospitalRegistrationApp.DataControllers.AdminControllers
             options.PrintAdminOptions();
 
             int userSelection = GetUserSelection();
-            Console.Clear();
 
-            switch (userSelection)
-            {
-                case 1:
-                    GetHospitalsAndDoctors();
-                    break;
-                case 2:
-                    GetVisits();
-                    break;
-                case 3:
-                    AddDoctor();
-                    break;
-                case 4:
-                    RemoveDoctor();
-                    break;
-                case 5:
-                    AddHospital();
-                    break;
-                case 6:
-                    RemoveHospital();
-                    break;
-                case 7:
-                    AddVisit();
-                    break;
-                case 8:
-                    RemoveVisit();
-                    break;
-                default:
-                    Console.WriteLine("You chose wrong option number");
-                    break;
+            while (userSelection != 9)
+            {           
+                switch (userSelection)
+                {
+                    case 1:
+                        GetHospitalsAndDoctors();
+                        break;
+                    case 2:
+                        GetVisits();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        AddDoctor();
+                        break;
+                    case 4:
+                        Console.Clear();                        
+                        RemoveDoctor();
+                        break;
+                    case 5:
+                        Console.Clear();                        
+                        AddHospital();
+                        break;
+                    case 6:
+                        Console.Clear();                        
+                        RemoveHospital();
+                        break;
+                    case 7:
+                        Console.Clear();
+                        AddVisit();
+                        break;
+                    case 8:
+                        Console.Clear();
+                        RemoveVisit();
+                        break;
+                    default:
+                        Console.WriteLine("You chose wrong option number");
+                        break;
+                }
+                options.PrintAdminOptions();
+                userSelection = GetUserSelection();
             }
 
         }

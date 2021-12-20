@@ -56,7 +56,20 @@ namespace HospitalRegistrationApp.DataControllers.PatientControllers
 
         private void ShowAvailableVisits()
         {
-            Console.WriteLine("Available visits");
+            var visitsProvider = new VisitsDataAccess();
+
+            var visits = visitsProvider.GetVisits();
+            visits = visits.Where(visit => visit.HospitalID == base.HospitalID);
+
+            if (visits.Any())
+            {
+                var showProvider = new ShowProvider();
+                showProvider.PrintVisits(visits);
+            }
+            else
+            {
+                throw new Exception("This hospital doesn't have available visits");
+            }
         }
     }
 }

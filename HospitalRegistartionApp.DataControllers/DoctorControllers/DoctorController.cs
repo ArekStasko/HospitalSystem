@@ -34,18 +34,24 @@ namespace HospitalRegistrationApp.DataControllers.DoctorControllers
             options.PrintDoctorOptions();
             int userSelection = GetUserSelection();
 
-            switch (userSelection)
+            while (userSelection != 3)
             {
-                case 1:
-                    GetDoctorHospital();
-                    break;
-                case 2:
-                    GetDoctorVisits();
-                    break;
-                default:
-                    Console.WriteLine("You chose wrong option number");
-                    break;
+                switch (userSelection)
+                {
+                    case 1:
+                        GetDoctorHospital();
+                        break;
+                    case 2:
+                        GetDoctorVisits();
+                        break;
+                    default:
+                        Console.WriteLine("You chose wrong option number");
+                        break;
+                }
+                options.PrintDoctorOptions();
+                userSelection = GetUserSelection();
             }
+           
         }
 
         private void GetDoctorHospital()

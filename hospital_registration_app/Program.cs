@@ -12,9 +12,7 @@ namespace HospitalRegistrationApp
         {
             DataGetController getDataController = new DataGetController();
             int selectedOption = getDataController.GetLoginSelection();
-
-            // For now patient Controllers is empty
-
+            
             if (selectedOption == 1)
             {
                 PatientController patientController = new PatientController();

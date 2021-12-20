@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HospitalRegistrationApp.DataAccess.models
 {
-    public class Visit
+    public class Visit 
     {
         public int VisitID { get; }
         public int HospitalID { get; }

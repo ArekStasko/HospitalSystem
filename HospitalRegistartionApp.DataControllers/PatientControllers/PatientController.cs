@@ -34,26 +34,48 @@ namespace HospitalRegistrationApp.DataControllers.PatientControllers
             optionsProvider.PrintPatientOptions();
             int selectedOption = GetUserSelection();
 
-            switch (selectedOption)
+            while(selectedOption != 4)
             {
-                case 1:
-                    var hospitalControllers = new HospitalController(this.HospitalID);
-                    optionsProvider.PrintHospitalOptions();
-                    int selectedHospitalOption = GetUserSelection();
-                    hospitalControllers.GetHospitalOptions(selectedHospitalOption);
-                    break;
-                case 2:
-                    ShowMyVisits();
-                    break;
-                case 3:
-                    SignUpForVisit();
-                    break;
+                switch (selectedOption)
+                {
+                    case 1:
+                        var hospitalControllers = new HospitalController(this.HospitalID);
+                        optionsProvider.PrintHospitalOptions();
+                        int selectedHospitalOption = GetUserSelection();
+                        hospitalControllers.GetHospitalOptions(selectedHospitalOption);
+                        break;
+                    case 2:
+                        ShowMyVisits();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        SignUpForVisit();
+                        break;
+                }
+                optionsProvider.PrintPatientOptions();
+                selectedOption = GetUserSelection();
             }
+            
         }
 
         private void ShowMyVisits()
         {
-            Console.WriteLine("Visits");
+            var visitDataProvider = new VisitsDataAccess();
+            var visits = visitDataProvider.GetVisits();
+
+            var userID = GetID("Provide you ID :");
+            visits = visits.Where(visit => visit.UserID == userID);
+
+            if (visits.Any())
+            {
+                var showProvider = new ShowProvider();
+                showProvider.PrintVisits(visits);
+            }
+            else
+            {
+                throw new Exception($"There is no visit with {userID} user ID");
+            }             
+
         }
 
         private void SignUpForVisit()
@@ -84,13 +106,19 @@ namespace HospitalRegistrationApp.DataControllers.PatientControllers
                 int doctorID = GetID("Provide doctor ID :");
 
                 visitToForm.DoctorID = doctorID;
-                //For now this is only test 'ID'
-                visitToForm.UserID = 123;
+                /*
+                 For now there is no users object, i will make it
+                 in the future when i will implement authentication
+                 with authorization
+                */
+                visitToForm.UserID = visitToForm.VisitID;
                 Console.WriteLine("Describe your problem :");
                 visitToForm.Description = Console.ReadLine();
                 visitToForm.Available = false;
 
                 visitDataProvider.UpdateVisit(visitToForm);
+
+                Console.WriteLine($"Your ID : {visitToForm.UserID} Save it, you will need it when you want to read your visits ");
             }
             catch (Exception e)
             {

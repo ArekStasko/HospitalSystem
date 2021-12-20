@@ -24,7 +24,8 @@ namespace HospitalRegistrationApp.Views
                 "Add Hospital", 
                 "Remove Hospital",
                 "Add Visit",
-                "Remove visit"
+                "Remove visit",
+                "Close System"
             };
             PrintOptions(adminOptions);
         }
@@ -34,7 +35,8 @@ namespace HospitalRegistrationApp.Views
             string[] doctorOptions = new string[]
             {
                 "Show my hospital",
-                "Show visits assigned to me"
+                "Show visits assigned to me",
+                "Close System"
             };
             PrintOptions(doctorOptions);
         }
@@ -45,7 +47,8 @@ namespace HospitalRegistrationApp.Views
             {
                 "Show hospital options",
                 "Show my visits",
-                "Sign up for visit"
+                "Sign up for visit",
+                "Close System"
             };
             PrintOptions(patientOptions);
         }

@@ -8,5 +8,9 @@ namespace HospitalRegistrationApp.Views
     {
         public void PrintStartingOptions();
         public void PrintAdminOptions();
+        public void PrintDoctorOptions();
+        public void PrintPatientOptions();
+        public void PrintHospitalOptions();
+
     }
 }

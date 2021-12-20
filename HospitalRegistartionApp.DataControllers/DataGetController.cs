@@ -26,7 +26,8 @@ namespace HospitalRegistrationApp.DataControllers
                 Console.WriteLine("Please provide correct data :");
                 providedData = Console.ReadLine();
             }
-            
+
+            Console.Clear();
             return userSelection;
         }
         protected int GetID(string message)
@@ -38,6 +39,7 @@ namespace HospitalRegistrationApp.DataControllers
                 Console.WriteLine("ID must be number");
                 ID = Console.ReadLine();
             }
+            Console.Clear();
             return Int32.Parse(ID);
         }
 
