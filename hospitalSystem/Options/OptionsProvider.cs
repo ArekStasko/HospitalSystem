@@ -1,17 +1,17 @@
 ﻿
-namespace HospitalSystem.Views
+namespace HospitalSystem
 {
-    public class OptionsProvider : IOptionsProvider
+    public class OptionsProvider
     {
-        public void PrintStartingOptions()
+        private void PrintStartingOptions()
         {
-            string[] startingOptions = new string[]{ "Patient", "Doctor", "Admin" };
+            string[] startingOptions = new string[]{ "Patient", "Doctor", "Admin", "Exit" };
 
             Console.WriteLine("You want to login as :");
             PrintOptions(startingOptions);
         }
 
-        public void PrintAdminOptions()
+        protected void PrintAdminOptions()
         {
             string[] adminOptions = new string[] 
             { 
@@ -28,7 +28,7 @@ namespace HospitalSystem.Views
             PrintOptions(adminOptions);
         }
 
-        public void PrintDoctorOptions()
+        protected void PrintDoctorOptions()
         {
             string[] doctorOptions = new string[]
             {
@@ -39,7 +39,7 @@ namespace HospitalSystem.Views
             PrintOptions(doctorOptions);
         }
 
-        public void PrintPatientOptions()
+        protected void PrintPatientOptions()
         {
             string[] patientOptions = new string[]
             {
@@ -51,7 +51,7 @@ namespace HospitalSystem.Views
             PrintOptions(patientOptions);
         }
 
-        public void PrintHospitalOptions()
+        protected void PrintHospitalOptions()
         {
             string[] hospitalOptions = new string[]
             {

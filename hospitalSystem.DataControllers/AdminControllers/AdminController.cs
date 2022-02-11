@@ -4,69 +4,20 @@ using HospitalSystem.DataAccess.models;
 
 namespace HospitalSystem.DataControllers.AdminControllers
 {
-    public class AdminController : DataGetController
+    public class AdminController 
     {
+        private IView _view;
+
+        public AdminController(IView view) => _view = view;
         
-        public void GetAdminOptions()
-        {
-            OptionsProvider options = new OptionsProvider();
-            options.PrintAdminOptions();
 
-            int userSelection = GetUserSelection();
-
-            while (userSelection != 9)
-            {           
-                switch (userSelection)
-                {
-                    case 1:
-                        GetHospitalsAndDoctors();
-                        break;
-                    case 2:
-                        GetVisits();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        AddDoctor();
-                        break;
-                    case 4:
-                        Console.Clear();                        
-                        RemoveDoctor();
-                        break;
-                    case 5:
-                        Console.Clear();                        
-                        AddHospital();
-                        break;
-                    case 6:
-                        Console.Clear();                        
-                        RemoveHospital();
-                        break;
-                    case 7:
-                        Console.Clear();
-                        AddVisit();
-                        break;
-                    case 8:
-                        Console.Clear();
-                        RemoveVisit();
-                        break;
-                    default:
-                        Console.WriteLine("You chose wrong option number");
-                        break;
-                }
-                options.PrintAdminOptions();
-                userSelection = GetUserSelection();
-            }
-
-        }
-
-        private void GetHospitalsAndDoctors()
+        public void GetHospitalsAndDoctors()
         {
             var doctorDataProvider = new DoctorDataProvider();
             var hospitalDataProvider = new HospitalsDataProvider();
 
             var hospitals = hospitalDataProvider.GetHospitals();
             var doctors = doctorDataProvider.GetDoctors();
-
-            var showProvider = new ShowProvider();
 
 
             foreach (var hospital in hospitals)
@@ -83,7 +34,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
 
         }
 
-        private void GetVisits()
+        public void GetVisits()
         {
             var visitProvider = new VisitsDataAccess();
             var showProvider = new ShowProvider();
@@ -93,7 +44,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
 
         }
 
-        private void AddDoctor()
+        public void AddDoctor()
         {
             var dataProvider = new DoctorDataProvider();
             List<string> newDoctorData = new List<string>();
@@ -132,7 +83,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
             }
         }
 
-        private void RemoveDoctor()
+        public void RemoveDoctor()
         {
             var dataProvider = new DoctorDataProvider();
 
@@ -152,7 +103,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
             }
         }
 
-        private void AddHospital()
+        public void AddHospital()
         {
             var dataProvider = new HospitalsDataProvider();
 
@@ -194,7 +145,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
 
         }
 
-        private void RemoveHospital()
+        public void RemoveHospital()
         {
             var dataProvider = new HospitalsDataProvider();
 
@@ -214,7 +165,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
             }
         }
 
-        private void AddVisit()
+        public void AddVisit()
         {
             var visitProvider = new VisitsDataAccess();
             List<string> visitData = new List<string>();
@@ -237,7 +188,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
             visitProvider.AddVisit(visit);
         }
 
-        private void RemoveVisit()
+        public void RemoveVisit()
         {
             var visitProvider = new VisitsDataAccess();
             int visitID = GetID("Please provide visit ID to remove");

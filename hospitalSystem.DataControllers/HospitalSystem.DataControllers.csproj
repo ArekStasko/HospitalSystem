@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HospitalSystem.DataAccess\HospitalSystem.DataAccess.csproj" />
-    <ProjectReference Include="..\HospitalSystem.Views\HospitalSystem.Views.csproj" />
   </ItemGroup>
 
 </Project>
