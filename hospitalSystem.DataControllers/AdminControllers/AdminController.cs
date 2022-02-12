@@ -18,15 +18,15 @@ namespace HospitalSystem.DataControllers.AdminControllers
             var hospitals = hospitalDataProvider.GetHospitals();
             var doctors = doctorDataProvider.GetDoctors();
 
-
+            
             foreach (var hospital in hospitals)
             {
-                showProvider.PrintHospitals(hospital);
+                _view.PrintHospitals(hospital);
                 var HospitalDoctors = doctors.Where(doctor => doctor.HospitalID == hospital.HospitalID);
                 if(HospitalDoctors.Count() > 0)
                 {
                     Console.WriteLine($"{hospital.HospitalName} hospital doctors :");
-                    showProvider.PrintDoctors(HospitalDoctors);
+                    _view.PrintDoctors(HospitalDoctors);
                 }
                 else Console.WriteLine($"0 {hospital.HospitalName} hospital doctors");
             }
@@ -36,11 +36,9 @@ namespace HospitalSystem.DataControllers.AdminControllers
         public void GetVisits()
         {
             var visitProvider = new VisitsDataAccess();
-            var showProvider = new ShowProvider();
             var visits = visitProvider.GetVisits();
 
-            showProvider.PrintVisits(visits);
-
+            _view.PrintVisits(visits);
         }
 
         public void AddDoctor()
@@ -56,22 +54,24 @@ namespace HospitalSystem.DataControllers.AdminControllers
 
             try
             {
-                int newDoctorID = GetID("Provide doctor ID");
+                _view.PrintMessage("Provide doctor ID");
+                int newDoctorID = _view.GetID();
 
                 var doctors = dataProvider.GetDoctors();
                 while (doctors.Any(doctor => doctor.DoctorID == newDoctorID))
                 {
-                    newDoctorID = GetID($"You already have doctor with {newDoctorID} ID");
+                    _view.PrintMessage($"You already have doctor with {newDoctorID} ID");
+                    newDoctorID = _view.GetID();
                 }
 
                 newDoctorData.Add(newDoctorID.ToString());
 
                 foreach (var dataQuery in dataToCollect)
                 {
-                    Console.WriteLine($"Please provide {dataQuery} :");
-                    newDoctorData.Add(Console.ReadLine());
+                    _view.PrintMessage($"Please provide {dataQuery} :"); 
+                    newDoctorData.Add(_view.GetData());
                 }
-                newDoctorData.Add(GetHospitalID().ToString());
+                newDoctorData.Add(_view.GetID().ToString());
 
                 var newDoctor = new Doctor(newDoctorData);
                 dataProvider.AddDoctor(newDoctor);
@@ -86,15 +86,15 @@ namespace HospitalSystem.DataControllers.AdminControllers
         {
             var dataProvider = new DoctorDataProvider();
 
-            Console.WriteLine("Please provide ID of doctor to remove");
-            string providedData = Console.ReadLine();
+            _view.PrintMessage("Please provide ID of doctor to remove");
+            string providedData = _view.GetData();
             int DoctorID = Int32.Parse(providedData);
             try
             {
                 IEnumerable<Doctor> doctors = dataProvider.GetDoctors();
                 Doctor doctorToDelete = doctors.Single(item => item.DoctorID == DoctorID);
                 dataProvider.RemoveDoctor(doctorToDelete);
-                Console.WriteLine("Successfully removed doctor");
+                _view.PrintMessage("Successfully removed doctor");
             }
             catch (Exception e)
             {
@@ -117,20 +117,20 @@ namespace HospitalSystem.DataControllers.AdminControllers
 
             try
             {
-                newHospitalData.Add(GetHospitalID().ToString());
+                newHospitalData.Add(_view.GetID().ToString());
 
                 foreach (var dataQuery in dataToCollect)
                 {
-                    Console.WriteLine($"Please provide {dataQuery} :");
-                    newHospitalData.Add(Console.ReadLine());
+                    _view.PrintMessage($"Please provide {dataQuery} :");
+                    newHospitalData.Add(_view.GetData());
                 }
 
-                Console.WriteLine("Online Prescriptions availability : Yes/No");
-                string prescAvailability = Console.ReadLine();
+                _view.PrintMessage("Online Prescriptions availability : Yes/No");
+                string prescAvailability = _view.GetData();
                 while(prescAvailability == "Yes" || prescAvailability == "No")
                 {
-                    Console.WriteLine("Please provide 'Yes' or 'No' :");
-                    prescAvailability = Console.ReadLine();
+                    _view.PrintMessage("Please provide 'Yes' or 'No' :");
+                    prescAvailability = _view.GetData();
                 }
 
                 var hospital = new Hospital(newHospitalData);
@@ -148,15 +148,15 @@ namespace HospitalSystem.DataControllers.AdminControllers
         {
             var dataProvider = new HospitalsDataProvider();
 
-            Console.WriteLine("Please provide ID of hospital to remove");
-            string providedData = Console.ReadLine();
+            _view.PrintMessage("Please provide ID of hospital to remove");
+            string providedData = _view.GetData();
             int hospitalID = Int32.Parse(providedData);
             try
             {
                 IEnumerable<Hospital> hospitals = dataProvider.GetHospitals();
                 Hospital hospitalToDelete = hospitals.Single(item => item.HospitalID == hospitalID);
                 dataProvider.RemoveHospital(hospitalToDelete);
-                Console.WriteLine("Successfully removed hospital");
+                _view.PrintMessage("Successfully removed hospital");
             }
             catch (Exception e)
             {
@@ -170,17 +170,20 @@ namespace HospitalSystem.DataControllers.AdminControllers
             List<string> visitData = new List<string>();
             var visits = visitProvider.GetVisits();
 
-            int visitID = GetID("Provide Visit ID :");
+            _view.PrintMessage("Provide Visit ID :");
+            int visitID = _view.GetID();
 
             while(visits.Any(visit=>visit.VisitID == visitID))
             {
-                visitID = GetID($"There is already visit with {visitID} ID");
+                _view.PrintMessage($"There is already visit with {visitID} ID");
+                visitID = _view.GetID();
             }
           
             visitData.Add(visitID.ToString());
-            visitData.Add(GetID("Provide Hospital ID :").ToString());
+            _view.PrintMessage("Provide Hospital ID :");
+            visitData.Add(_view.GetID().ToString());
             Console.WriteLine("Provide time of visit");
-            visitData.Add(Console.ReadLine());
+            visitData.Add(_view.GetData());
 
             Visit visit = new Visit(visitData);
             visit.Available = true;
@@ -190,7 +193,8 @@ namespace HospitalSystem.DataControllers.AdminControllers
         public void RemoveVisit()
         {
             var visitProvider = new VisitsDataAccess();
-            int visitID = GetID("Please provide visit ID to remove");
+            _view.PrintMessage("Please provide visit ID to remove");
+            int visitID = _view.GetID();
 
             var visits = visitProvider.GetVisits();
             try
@@ -200,7 +204,7 @@ namespace HospitalSystem.DataControllers.AdminControllers
             }
             catch (Exception)
             {
-                Console.WriteLine($"There is no visit with {visitID} to remove");
+                _view.PrintMessage($"There is no visit with {visitID} to remove");
             }
         }
 

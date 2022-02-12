@@ -1,5 +1,5 @@
 ﻿
-namespace HospitalSystem.Options.DoctorOptions
+namespace HospitalSystem
 {
     public class DoctorOptions : View
     {

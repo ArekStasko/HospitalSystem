@@ -17,7 +17,7 @@ namespace HospitalSystem.DataControllers.HospitalControllers
             switch (selectedOption)
             {
                 case 1:
-                    base.SetPatientHospital();
+                    SetPatientHospital();
                     break;
                 case 2:
                     GetHospitalInfo();
@@ -37,13 +37,11 @@ namespace HospitalSystem.DataControllers.HospitalControllers
             var hospital = hospitalProvider.GetHospitals()
                 .First(hospital => hospital.HospitalID == HospitalID);
 
-            var showProvider = new ShowProvider();
             showProvider.PrintHospitals(hospital);
         }
 
         public void GetHospitalDoctors()
         {
-            var showProvider = new ShowProvider();
             var doctorsProvider = new DoctorDataProvider();
             var doctors = doctorsProvider.GetDoctors()
                         .Where(doctor => doctor.HospitalID == HospitalID);
@@ -59,7 +57,6 @@ namespace HospitalSystem.DataControllers.HospitalControllers
 
             if (visits.Any())
             {
-                var showProvider = new ShowProvider();
                 showProvider.PrintVisits(visits);
             }
             else

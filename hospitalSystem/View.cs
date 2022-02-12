@@ -34,12 +34,12 @@ namespace HospitalSystem
                 switch (userSelection)
                 {
                     case 1:
-                        PatientController patientController = new PatientController();
-                        patientController.SetPatientHospital();
+                        var patientOptions = new PatientOptions();
+                        patientOptions.GetPatientOptions();
                         break;
-                    case 2:
-                        DoctorController doctorController = new DoctorController();
-                        doctorController.DoctorAuthorization();
+                    case 2:;
+                        var doctorOptions = new DoctorOptions();
+                        doctorOptions.GetDoctorOptions();
                         break;
                     case 3:
                         var adminOptions = new AdminOptions();
@@ -53,16 +53,31 @@ namespace HospitalSystem
             
 
         }
+        
+        public void PrintMessage(string msg)
+        {
+            Console.WriteLine(msg);
+        }
+
+        public string GetData()
+        {
+            string data;
+            do
+            {
+                data = Console.ReadLine();
+            } while (string.IsNullOrWhiteSpace(data));
+            return data;
+        }
 
         public int GetUserSelection()
         {
-            string providedData = Console.ReadLine();
+            string providedData = GetData();
             int userSelection;
 
             while (!Int32.TryParse(providedData, out userSelection))
             {
                 Console.WriteLine("Please provide correct data :");
-                providedData = Console.ReadLine();
+                providedData = GetData();
             }
 
             Console.Clear();
@@ -72,11 +87,11 @@ namespace HospitalSystem
 
         public int GetID()
         {
-            string ID = Console.ReadLine();
+            string ID = GetData();
             while (!Int32.TryParse(ID, out int n))
             {
                 Console.WriteLine("ID must be number");
-                ID = Console.ReadLine();
+                ID = GetData();
             }
             Console.Clear();
             return Int32.Parse(ID);

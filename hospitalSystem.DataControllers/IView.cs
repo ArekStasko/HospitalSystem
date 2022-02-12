@@ -16,6 +16,8 @@ namespace HospitalSystem.DataControllers
         public void PrintDoctors(IEnumerable<Doctor> doctors);
         public void PrintVisit(Visit visit);
         public void PrintVisits(IEnumerable<Visit> visits);
+        public void PrintMessage(string msg);
+        public string GetData();
 
     }
 }

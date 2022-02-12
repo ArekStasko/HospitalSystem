@@ -1,5 +1,4 @@
 ﻿using HospitalSystem.DataAccess.DataAccessControllers;
-using HospitalSystem.Views;
 
 namespace HospitalSystem.DataControllers.DoctorControllers
 {
@@ -13,7 +12,8 @@ namespace HospitalSystem.DataControllers.DoctorControllers
         public void DoctorAuthorization()
         {
             var dataProvider = new DoctorDataProvider();
-            int doctorID = GetID("Please provide your ID :");
+            _view.PrintMessage("Please provide your ID :");
+            int doctorID = _view.GetID();
 
             var doctors = dataProvider.GetDoctors();
             try { 
@@ -21,7 +21,6 @@ namespace HospitalSystem.DataControllers.DoctorControllers
                 DoctorHospitalID = doctor.HospitalID;
                 DoctorID = doctor.DoctorID;
                 Console.WriteLine($"You are logged in as {doctorID} doctor");
-                GetDoctorOptions();
             }
             catch(Exception e)
             {
@@ -36,9 +35,8 @@ namespace HospitalSystem.DataControllers.DoctorControllers
 
             var doctorHospital = hospitals.First(hospital => hospital.HospitalID == DoctorHospitalID);
 
-            var showProvider = new ShowProvider();
-            Console.WriteLine("Your hospital :");
-            showProvider.PrintHospitals(doctorHospital);
+            _view.PrintMessage("Your hospital :");
+            _view.PrintHospitals(doctorHospital);
         }
 
         public void GetDoctorVisits()
@@ -49,8 +47,7 @@ namespace HospitalSystem.DataControllers.DoctorControllers
             try
             {
                 var visit = visits.First(visit => visit.DoctorID == DoctorID);
-                var showProvider = new ShowProvider();
-                showProvider.PrintVisit(visit);
+                _view.PrintVisit(visit);
             }
             catch (Exception)
             {
