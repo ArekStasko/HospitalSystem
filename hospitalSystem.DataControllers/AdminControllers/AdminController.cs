@@ -1,10 +1,9 @@
-﻿using HospitalSystem.Views;
-using HospitalSystem.DataAccess.DataAccessControllers;
+﻿using HospitalSystem.DataAccess.DataAccessControllers;
 using HospitalSystem.DataAccess.models;
 
 namespace HospitalSystem.DataControllers.AdminControllers
 {
-    public class AdminController 
+    public class AdminController : IAdminControllers
     {
         private IView _view;
 

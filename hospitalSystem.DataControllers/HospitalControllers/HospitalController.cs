@@ -1,9 +1,8 @@
 ﻿using HospitalSystem.DataAccess.DataAccessControllers;
-using HospitalSystem.Views;
 
-namespace HospitalSystem.DataControllers.PatientControllers
+namespace HospitalSystem.DataControllers.HospitalControllers
 {
-    public class HospitalController : PatientController
+    public class HospitalController : IHospitalControllers
     {
         private new int HospitalID { get; set; }
 
@@ -32,7 +31,7 @@ namespace HospitalSystem.DataControllers.PatientControllers
             }
         }
 
-        private void GetHospitalInfo()
+        public void GetHospitalInfo()
         {
             var hospitalProvider = new HospitalsDataProvider();
             var hospital = hospitalProvider.GetHospitals()
@@ -42,7 +41,7 @@ namespace HospitalSystem.DataControllers.PatientControllers
             showProvider.PrintHospitals(hospital);
         }
 
-        private void GetHospitalDoctors()
+        public void GetHospitalDoctors()
         {
             var showProvider = new ShowProvider();
             var doctorsProvider = new DoctorDataProvider();
@@ -51,7 +50,7 @@ namespace HospitalSystem.DataControllers.PatientControllers
             showProvider.PrintDoctors(doctors);
         }
 
-        private void ShowAvailableVisits()
+        public void ShowAvailableVisits()
         {
             var visitsProvider = new VisitsDataAccess();
 

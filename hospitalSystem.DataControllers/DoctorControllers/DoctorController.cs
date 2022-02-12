@@ -3,8 +3,11 @@ using HospitalSystem.Views;
 
 namespace HospitalSystem.DataControllers.DoctorControllers
 {
-    public class DoctorController : DataGetController
+    public class DoctorController : IDoctorControllers
     {
+        private IView _view;
+        public DoctorController(IView view) => _view = view;
+
         private int DoctorHospitalID { get; set; }
         private int DoctorID { get; set; }
         public void DoctorAuthorization()
@@ -26,33 +29,7 @@ namespace HospitalSystem.DataControllers.DoctorControllers
             }
         }
 
-        private void GetDoctorOptions()
-        {
-            var options = new OptionsProvider();
-            options.PrintDoctorOptions();
-            int userSelection = GetUserSelection();
-
-            while (userSelection != 3)
-            {
-                switch (userSelection)
-                {
-                    case 1:
-                        GetDoctorHospital();
-                        break;
-                    case 2:
-                        GetDoctorVisits();
-                        break;
-                    default:
-                        Console.WriteLine("You chose wrong option number");
-                        break;
-                }
-                options.PrintDoctorOptions();
-                userSelection = GetUserSelection();
-            }
-           
-        }
-
-        private void GetDoctorHospital()
+        public void GetDoctorHospital()
         {
             var dataProvider = new HospitalsDataProvider();
             var hospitals = dataProvider.GetHospitals();
@@ -64,7 +41,7 @@ namespace HospitalSystem.DataControllers.DoctorControllers
             showProvider.PrintHospitals(doctorHospital);
         }
 
-        private void GetDoctorVisits()
+        public void GetDoctorVisits()
         {
             var visitsDataProvider = new VisitsDataAccess();
             var visits = visitsDataProvider.GetVisits();

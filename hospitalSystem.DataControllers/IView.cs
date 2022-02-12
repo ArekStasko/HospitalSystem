@@ -10,7 +10,7 @@ namespace HospitalSystem.DataControllers
     public interface IView
     {
         public int GetUserSelection();
-        public int GetID(string message);
+        public int GetID();
         public void PrintHospitals(Hospital hospital);
         public void PrintHospitals(IEnumerable<Hospital> hospitals);
         public void PrintDoctors(IEnumerable<Doctor> doctors);

@@ -1,67 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HospitalSystem.DataControllers;
-using HospitalSystem.DataControllers.AdminControllers;
-
+﻿
 namespace HospitalSystem
 {
-    public class AdminOptions : OptionsProvider
+    public class AdminOptions : View
     {
-        private IView _view;
-
-        public AdminOptions(IView view) => _view = view;
 
         public void GetAdminOptions() 
         {
-            PrintAdminOptions();
-
-            int userSelection = _view.GetUserSelection();
-
-            var adminControllers = new AdminController(_view);
+            _options.PrintAdminOptions();
+            
+            int userSelection = GetUserSelection();
 
             while (userSelection != 9)
             {
                 switch (userSelection)
                 {
                     case 1:
-                        adminControllers.GetHospitalsAndDoctors();
+                        _adminControllers.GetHospitalsAndDoctors();
                         break;
                     case 2:
-                        adminControllers.GetVisits();
+                        _adminControllers.GetVisits();
                         break;
                     case 3:
                         Console.Clear();
-                        adminControllers.AddDoctor();
+                        _adminControllers.AddDoctor();
                         break;
                     case 4:
                         Console.Clear();
-                        adminControllers.RemoveDoctor();
+                        _adminControllers.RemoveDoctor();
                         break;
                     case 5:
                         Console.Clear();
-                        adminControllers.AddHospital();
+                        _adminControllers.AddHospital();
                         break;
                     case 6:
                         Console.Clear();
-                        adminControllers.RemoveHospital();
+                        _adminControllers.RemoveHospital();
                         break;
                     case 7:
                         Console.Clear();
-                        adminControllers.AddVisit();
+                        _adminControllers.AddVisit();
                         break;
                     case 8:
                         Console.Clear();
-                        adminControllers.RemoveVisit();
+                        _adminControllers.RemoveVisit();
                         break;
                     default:
                         Console.WriteLine("You chose wrong option number");
                         break;
                 }
-                PrintAdminOptions();
-                userSelection = _view.GetUserSelection();
+                _options.PrintAdminOptions();
+                userSelection = GetUserSelection();
             }
 
         }

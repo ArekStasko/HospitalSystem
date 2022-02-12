@@ -3,7 +3,7 @@ namespace HospitalSystem
 {
     public class OptionsProvider
     {
-        private void PrintStartingOptions()
+        public void PrintStartingOptions()
         {
             string[] startingOptions = new string[]{ "Patient", "Doctor", "Admin", "Exit" };
 
@@ -11,7 +11,7 @@ namespace HospitalSystem
             PrintOptions(startingOptions);
         }
 
-        protected void PrintAdminOptions()
+        public void PrintAdminOptions()
         {
             string[] adminOptions = new string[] 
             { 
@@ -28,7 +28,7 @@ namespace HospitalSystem
             PrintOptions(adminOptions);
         }
 
-        protected void PrintDoctorOptions()
+        public void PrintDoctorOptions()
         {
             string[] doctorOptions = new string[]
             {
@@ -39,7 +39,7 @@ namespace HospitalSystem
             PrintOptions(doctorOptions);
         }
 
-        protected void PrintPatientOptions()
+        public void PrintPatientOptions()
         {
             string[] patientOptions = new string[]
             {
@@ -51,7 +51,7 @@ namespace HospitalSystem
             PrintOptions(patientOptions);
         }
 
-        protected void PrintHospitalOptions()
+        public void PrintHospitalOptions()
         {
             string[] hospitalOptions = new string[]
             {
@@ -63,7 +63,7 @@ namespace HospitalSystem
             PrintOptions(hospitalOptions);
         }
 
-        private void PrintOptions(string[] options)
+        public void PrintOptions(string[] options)
         {
             Console.WriteLine("What do you want to do ? :");
             for (int i = 0; i < options.Length; i++)

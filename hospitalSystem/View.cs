@@ -1,22 +1,29 @@
 ﻿using HospitalSystem.DataControllers;
 using HospitalSystem.DataControllers.PatientControllers;
 using HospitalSystem.DataControllers.DoctorControllers;
+using HospitalSystem.DataControllers.AdminControllers;
 using HospitalSystem.DataAccess.models;
 
 namespace HospitalSystem
 {
     public class View : IView
     {
-        static void Main(string[] args)
+        protected OptionsProvider _options = new OptionsProvider();
+        protected IAdminControllers _adminControllers;
+        protected IPatientControllers _patientControllers;
+        protected IDoctorControllers _doctorControllers;
+
+        public View()
         {
-            var _view = new View();
-            _view.Run();
+            _adminControllers = ControllersFactory.NewAdminControllersInstance(this);
+            _patientControllers = ControllersFactory.NewPatientControllersInstance(this);
+            _doctorControllers = ControllersFactory.NewDoctorControllersInstance(this);
         }
 
         private void Run()
         {
             OptionsProvider options = new OptionsProvider();
-            options.PrintStartingOptions();
+            _options.PrintStartingOptions();
             int userSelection;
 
             do
@@ -35,7 +42,7 @@ namespace HospitalSystem
                         doctorController.DoctorAuthorization();
                         break;
                     case 3:
-                        var adminOptions = new AdminOptions(this);
+                        var adminOptions = new AdminOptions();
                         adminOptions.GetAdminOptions();
                         break;
                     default:
@@ -63,9 +70,8 @@ namespace HospitalSystem
         }
 
 
-        public int GetID(string message)
+        public int GetID()
         {
-            Console.WriteLine(message);
             string ID = Console.ReadLine();
             while (!Int32.TryParse(ID, out int n))
             {
@@ -136,6 +142,12 @@ namespace HospitalSystem
         private void PrintItem(string[] item)
         {
             Console.WriteLine(String.Join(" | ", item));
+        }
+
+        static void Main(string[] args)
+        {
+            var _view = new View();
+            _view.Run();
         }
     }
 }

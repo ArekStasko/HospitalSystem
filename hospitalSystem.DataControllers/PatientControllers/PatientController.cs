@@ -1,20 +1,31 @@
 ﻿using HospitalSystem.DataAccess.DataAccessControllers;
-using HospitalSystem.Views;
+using HospitalSystem.DataControllers.HospitalControllers;
 
 namespace HospitalSystem.DataControllers.PatientControllers
 {
-    public class PatientController : DataGetController
+    public class PatientController : IPatientControllers
     {
+        private IView _view;
+        public PatientController(IView view) => _view = view;
+
         protected int HospitalID { get; set; }
+
+        public void HospitalOptions()
+        {
+            var hospitalControllers = ControllersFactory.NewHospitalControllersInstance(HospitalID);
+            PrintHospitalOptions();
+            int selectedHospitalOption = _view.GetUserSelection();
+            hospitalControllers.GetHospitalOptions(selectedHospitalOption);
+        }
 
         public void SetPatientHospital()
         {
-            var showProvider = new ShowProvider();
             var hospitalProvider = new HospitalsDataProvider();
             var hospitals = hospitalProvider.GetHospitals();
 
-            showProvider.PrintHospitals(hospitals);
-            var HospitalID = GetID("Please provide hospital ID from list :");
+            _view.PrintHospitals(hospitals);
+            Console.WriteLine("Please provide hospital ID from list :");
+            var HospitalID = _view.GetID();
 
             if (hospitals.Any(hospital => hospital.HospitalID == HospitalID))
             {
@@ -22,40 +33,9 @@ namespace HospitalSystem.DataControllers.PatientControllers
                 GetPatientOptions();
             }
             else Console.WriteLine($"There is no hospital with {HospitalID} ID ");
-        }
+        }    
 
-        private void GetPatientOptions()
-        {
-            var optionsProvider = new OptionsProvider();
-
-            optionsProvider.PrintPatientOptions();
-            int selectedOption = GetUserSelection();
-
-            while(selectedOption != 4)
-            {
-                switch (selectedOption)
-                {
-                    case 1:
-                        var hospitalControllers = new HospitalController(this.HospitalID);
-                        optionsProvider.PrintHospitalOptions();
-                        int selectedHospitalOption = GetUserSelection();
-                        hospitalControllers.GetHospitalOptions(selectedHospitalOption);
-                        break;
-                    case 2:
-                        ShowMyVisits();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        SignUpForVisit();
-                        break;
-                }
-                optionsProvider.PrintPatientOptions();
-                selectedOption = GetUserSelection();
-            }
-            
-        }
-
-        private void ShowMyVisits()
+        public void ShowMyVisits()
         {
             var visitDataProvider = new VisitsDataAccess();
             var visits = visitDataProvider.GetVisits();
@@ -75,7 +55,7 @@ namespace HospitalSystem.DataControllers.PatientControllers
 
         }
 
-        private void SignUpForVisit()
+        public void SignUpForVisit()
         {
             var visitDataProvider = new VisitsDataAccess();
             var showProvider = new ShowProvider();
