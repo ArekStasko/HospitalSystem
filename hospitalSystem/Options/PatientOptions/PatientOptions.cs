@@ -16,7 +16,8 @@ namespace HospitalSystem
                 switch (selectedOption)
                 {
                     case 1:
-                        
+                        _options.PrintHospitalOptions();
+                        _patientControllers.HospitalOptions();
                         break;
                     case 2:
                         _patientControllers.ShowMyVisits();

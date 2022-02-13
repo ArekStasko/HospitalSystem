@@ -12,27 +12,20 @@ namespace HospitalSystem.DataControllers.PatientControllers
 
         public void HospitalOptions()
         {
-            var hospitalControllers = ControllersFactory.NewHospitalControllersInstance(HospitalID);
-            PrintHospitalOptions();
+            SetPatientHospital();
+            var hospitalControllers = ControllersFactory.NewHospitalControllersInstance(_view, HospitalID);
             int selectedHospitalOption = _view.GetUserSelection();
             hospitalControllers.GetHospitalOptions(selectedHospitalOption);
         }
 
-        public void SetPatientHospital()
+        private void SetPatientHospital()
         {
             var hospitalProvider = new HospitalsDataProvider();
             var hospitals = hospitalProvider.GetHospitals();
 
             _view.PrintHospitals(hospitals);
-            Console.WriteLine("Please provide hospital ID from list :");
-            var HospitalID = _view.GetID();
-
-            if (hospitals.Any(hospital => hospital.HospitalID == HospitalID))
-            {
-                this.HospitalID = HospitalID;
-                GetPatientOptions();
-            }
-            else Console.WriteLine($"There is no hospital with {HospitalID} ID ");
+            _view.PrintMessage("Please provide hospital ID from list :");
+            HospitalID = _view.GetID();
         }    
 
         public void ShowMyVisits()
@@ -40,13 +33,13 @@ namespace HospitalSystem.DataControllers.PatientControllers
             var visitDataProvider = new VisitsDataAccess();
             var visits = visitDataProvider.GetVisits();
 
-            var userID = GetID("Provide you ID :");
+            _view.PrintMessage("Provide you ID :");
+            var userID = _view.GetID();
             visits = visits.Where(visit => visit.UserID == userID);
 
             if (visits.Any())
             {
-                var showProvider = new ShowProvider();
-                showProvider.PrintVisits(visits);
+                _view.PrintVisits(visits);
             }
             else
             {
@@ -58,20 +51,21 @@ namespace HospitalSystem.DataControllers.PatientControllers
         public void SignUpForVisit()
         {
             var visitDataProvider = new VisitsDataAccess();
-            var showProvider = new ShowProvider();
             var visits = visitDataProvider.GetVisits();
             visits = visits.Where(visit => visit.Available && visit.HospitalID == HospitalID);
 
             try
             {
                 Console.WriteLine("Available Visits :");
-                showProvider.PrintVisits(visits);
+                _view.PrintVisits(visits);
 
-                int visitID = GetID("Select visit by ID :");
+                _view.PrintMessage("Select visit by ID :");
+                int visitID = _view.GetID();
 
                 while (!visits.Any(visit => visit.VisitID == visitID))
                 {
-                    visitID = GetID($"There is no visit with {visitID} ID");
+                    _view.PrintMessage($"There is no visit with {visitID} ID");
+                    visitID = _view.GetID();
                 }
 
                 var visitToForm = visits.First(visit => visit.VisitID == visitID);
@@ -79,8 +73,9 @@ namespace HospitalSystem.DataControllers.PatientControllers
                 var doctorsDataProvider = new DoctorDataProvider();
 
                 var doctors = doctorsDataProvider.GetDoctorsByHospitalID(HospitalID);
-                showProvider.PrintDoctors(doctors);
-                int doctorID = GetID("Provide doctor ID :");
+                _view.PrintDoctors(doctors);
+                _view.PrintMessage("Provide doctor ID :");
+                int doctorID = _view.GetID();
 
                 visitToForm.DoctorID = doctorID;
                 /*
@@ -90,12 +85,12 @@ namespace HospitalSystem.DataControllers.PatientControllers
                 */
                 visitToForm.UserID = visitToForm.VisitID;
                 Console.WriteLine("Describe your problem :");
-                visitToForm.Description = Console.ReadLine();
+                visitToForm.Description = _view.GetData();
                 visitToForm.Available = false;
 
                 visitDataProvider.UpdateVisit(visitToForm);
 
-                Console.WriteLine($"Your ID : {visitToForm.UserID} Save it, you will need it when you want to read your visits ");
+                _view.PrintMessage($"Your ID : {visitToForm.UserID} Save it, you will need it when you want to read your visits ");
             }
             catch (Exception e)
             {

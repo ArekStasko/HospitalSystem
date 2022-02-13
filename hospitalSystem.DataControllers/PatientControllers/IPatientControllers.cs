@@ -9,7 +9,6 @@ namespace HospitalSystem.DataControllers.PatientControllers
     public interface IPatientControllers
     {
         public void HospitalOptions();
-        public void SetPatientHospital();
         public void ShowMyVisits();
         public void SignUpForVisit();
     }

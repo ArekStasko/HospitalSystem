@@ -5,10 +5,12 @@ namespace HospitalSystem.DataControllers.HospitalControllers
     public class HospitalController : IHospitalControllers
     {
         private new int HospitalID { get; set; }
+        private IView _view;
 
-        public HospitalController(int HospitalID)
+        public HospitalController(IView view, int HospitalID)
         {
             this.HospitalID = HospitalID;
+            _view = view;
         }
 
         public void GetHospitalOptions(int selectedOption)
@@ -17,7 +19,7 @@ namespace HospitalSystem.DataControllers.HospitalControllers
             switch (selectedOption)
             {
                 case 1:
-                    SetPatientHospital();
+
                     break;
                 case 2:
                     GetHospitalInfo();
@@ -37,7 +39,7 @@ namespace HospitalSystem.DataControllers.HospitalControllers
             var hospital = hospitalProvider.GetHospitals()
                 .First(hospital => hospital.HospitalID == HospitalID);
 
-            showProvider.PrintHospitals(hospital);
+            _view.PrintHospitals(hospital);
         }
 
         public void GetHospitalDoctors()
@@ -45,7 +47,7 @@ namespace HospitalSystem.DataControllers.HospitalControllers
             var doctorsProvider = new DoctorDataProvider();
             var doctors = doctorsProvider.GetDoctors()
                         .Where(doctor => doctor.HospitalID == HospitalID);
-            showProvider.PrintDoctors(doctors);
+            _view.PrintDoctors(doctors);
         }
 
         public void ShowAvailableVisits()
@@ -53,11 +55,11 @@ namespace HospitalSystem.DataControllers.HospitalControllers
             var visitsProvider = new VisitsDataAccess();
 
             var visits = visitsProvider.GetVisits();
-            visits = visits.Where(visit => visit.HospitalID == base.HospitalID);
+            visits = visits.Where(visit => visit.HospitalID == HospitalID);
 
             if (visits.Any())
             {
-                showProvider.PrintVisits(visits);
+                _view.PrintVisits(visits);
             }
             else
             {

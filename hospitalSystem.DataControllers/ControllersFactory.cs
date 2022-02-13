@@ -22,9 +22,9 @@ namespace HospitalSystem.DataControllers
             return new DoctorController(view);
         }
 
-        public static IHospitalControllers NewHospitalControllersInstance(int HospitalID)
+        public static IHospitalControllers NewHospitalControllersInstance(this IView view, int HospitalID)
         {
-            return new HospitalController(HospitalID);
+            return new HospitalController(view, HospitalID);
         }
 
     }
