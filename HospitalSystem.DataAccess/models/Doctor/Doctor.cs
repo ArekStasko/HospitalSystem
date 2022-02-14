@@ -1,7 +1,7 @@
 ﻿
 namespace HospitalSystem.DataAccess.models
 {
-    public class Doctor : AbstractModel
+    public class Doctor : IDoctor
     {
         public int DoctorID { get; }
         public string FirstName { get; }
@@ -17,7 +17,7 @@ namespace HospitalSystem.DataAccess.models
             HospitalID = Int32.Parse(doctorData[3]);
         }
         
-        public override string[] ConvertToDataRow()
+        public string[] ConvertToDataRow()
         {
             return new[] {
                 DoctorID.ToString(),

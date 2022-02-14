@@ -1,38 +1,46 @@
-﻿using HospitalSystem.DataAccess.DataAccessControllers;
+﻿using HospitalSystem.DataAccess.DataAccessServices;
+using HospitalSystem.DataAccess;
 
 namespace HospitalSystem.DataControllers.DoctorControllers
 {
     public class DoctorController : IDoctorControllers
     {
         private IView _view;
-        public DoctorController(IView view) => _view = view;
+        private IDoctorDataAccess _doctorProvider;
+        private IHospitalDataAccess _hospitalProvider;
+        private IVisitDataAccess _visitProvider;
+        public DoctorController(IView view)
+        {
+            _view = view;
+            _doctorProvider = DataAccessFactory.GetNewDoctorDataAccessInstance();
+            _hospitalProvider = DataAccessFactory.GetNewHospitalDataAccessInstance();
+            _visitProvider = DataAccessFactory.GetNewVisitDataAccessInstance();
+        } 
 
         private int DoctorHospitalID { get; set; }
         private int DoctorID { get; set; }
         public void DoctorAuthorization()
         {
-            var dataProvider = new DoctorDataProvider();
             _view.PrintMessage("Please provide your ID :");
             int doctorID = _view.GetID();
 
-            var doctors = dataProvider.GetDoctors();
+            var doctors = _doctorProvider.GetDoctors();
             try { 
                 var doctor = doctors.First(doc => doc.DoctorID == doctorID);
                 DoctorHospitalID = doctor.HospitalID;
                 DoctorID = doctor.DoctorID;
                 Console.WriteLine($"You are logged in as {doctorID} doctor");
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                throw e;
+                _view.PrintMessage("Something went wrong");
+                return;
             }
         }
 
         public void GetDoctorHospital()
         {
-            var dataProvider = new HospitalsDataProvider();
-            var hospitals = dataProvider.GetHospitals();
-
+            var hospitals = _hospitalProvider.GetHospitals();
             var doctorHospital = hospitals.First(hospital => hospital.HospitalID == DoctorHospitalID);
 
             _view.PrintMessage("Your hospital :");
@@ -41,8 +49,7 @@ namespace HospitalSystem.DataControllers.DoctorControllers
 
         public void GetDoctorVisits()
         {
-            var visitsDataProvider = new VisitsDataAccess();
-            var visits = visitsDataProvider.GetVisits();
+            var visits = _visitProvider.GetVisits();
 
             try
             {
@@ -51,7 +58,8 @@ namespace HospitalSystem.DataControllers.DoctorControllers
             }
             catch (Exception)
             {
-                throw new Exception("You don't have any visits");
+                _view.PrintMessage("You don't have any visits");
+                return;
             }
         }
     }

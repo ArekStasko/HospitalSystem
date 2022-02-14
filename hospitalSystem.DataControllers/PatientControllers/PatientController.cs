@@ -1,14 +1,21 @@
-﻿using HospitalSystem.DataAccess.DataAccessControllers;
-using HospitalSystem.DataControllers.HospitalControllers;
+﻿using HospitalSystem.DataAccess.DataAccessServices;
+using HospitalSystem.DataAccess;
 
 namespace HospitalSystem.DataControllers.PatientControllers
 {
     public class PatientController : IPatientControllers
     {
         private IView _view;
-        public PatientController(IView view) => _view = view;
+        private int HospitalID { get; set; }
+        private IHospitalDataAccess _hospitalProvider;
+        private IVisitDataAccess _visitProvider;
+        public PatientController(IView view)
+        {
+            _view = view;
+            _hospitalProvider = DataAccessFactory.GetNewHospitalDataAccessInstance();
+            _visitProvider = DataAccessFactory.GetNewVisitDataAccessInstance();
+        }
 
-        protected int HospitalID { get; set; }
 
         public void HospitalOptions()
         {
@@ -20,8 +27,7 @@ namespace HospitalSystem.DataControllers.PatientControllers
 
         private void SetPatientHospital()
         {
-            var hospitalProvider = new HospitalsDataProvider();
-            var hospitals = hospitalProvider.GetHospitals();
+            var hospitals = _hospitalProvider.GetHospitals();
 
             _view.PrintHospitals(hospitals);
             _view.PrintMessage("Please provide hospital ID from list :");
@@ -30,22 +36,18 @@ namespace HospitalSystem.DataControllers.PatientControllers
 
         public void ShowMyVisits()
         {
-            var visitDataProvider = new VisitsDataAccess();
-            var visits = visitDataProvider.GetVisits();
+            var visits = _visitProvider.GetVisits();
 
             _view.PrintMessage("Provide you ID :");
             var userID = _view.GetID();
             visits = visits.Where(visit => visit.UserID == userID);
 
-            if (visits.Any())
+            if(!visits.Any())
             {
-                _view.PrintVisits(visits);
+                _view.PrintMessage($"There is no visit with {userID} user ID");
             }
-            else
-            {
-                throw new Exception($"There is no visit with {userID} user ID");
-            }             
 
+            _view.PrintVisits(visits);
         }
 
         public void SignUpForVisit()
@@ -56,7 +58,7 @@ namespace HospitalSystem.DataControllers.PatientControllers
 
             try
             {
-                Console.WriteLine("Available Visits :");
+                _view.PrintMessage("Available Visits :");
                 _view.PrintVisits(visits);
 
                 _view.PrintMessage("Select visit by ID :");
@@ -84,7 +86,7 @@ namespace HospitalSystem.DataControllers.PatientControllers
                  with authorization
                 */
                 visitToForm.UserID = visitToForm.VisitID;
-                Console.WriteLine("Describe your problem :");
+                _view.PrintMessage("Describe your problem :");
                 visitToForm.Description = _view.GetData();
                 visitToForm.Available = false;
 
@@ -92,9 +94,10 @@ namespace HospitalSystem.DataControllers.PatientControllers
 
                 _view.PrintMessage($"Your ID : {visitToForm.UserID} Save it, you will need it when you want to read your visits ");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                _view.PrintMessage("Something went wrong");
+                return;
             }
         }
     }

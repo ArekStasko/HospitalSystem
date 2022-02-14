@@ -1,36 +1,17 @@
 ﻿using HospitalSystem.DataAccess.models;
 
-namespace HospitalSystem.DataAccess.DataAccessControllers
+namespace HospitalSystem.DataAccess.DataAccessServices
 {
-    public class HospitalsDataProvider
+    public class HospitalsDataProvider : IHospitalDataAccess
     {
         private const string HospitalsFilePath = @".\hospitals.txt";
         private const string separator = "|";
-
-        private void InitializeHospitalsFile()
-        {
-            if (!File.Exists(HospitalsFilePath))
-            {
-                using (File.Create(HospitalsFilePath))
-                {
-
-                }
-            }
-        }
 
         public void AddHospital(Hospital newHospital)
         {
             InitializeHospitalsFile();
             string line = string.Join(separator, newHospital.ConvertToDataRow());
             File.AppendAllText(HospitalsFilePath, line + Environment.NewLine);
-        }
-
-        private void AddHospitals(List<Hospital> hospitals)
-        {
-            foreach (var hospital in hospitals)
-            {
-                AddHospital(hospital);
-            }
         }
 
         public IEnumerable<Hospital> GetHospitals()
@@ -58,5 +39,23 @@ namespace HospitalSystem.DataAccess.DataAccessControllers
             AddHospitals(hospitals);
         }
 
+        private void AddHospitals(List<Hospital> hospitals)
+        {
+            foreach (var hospital in hospitals)
+            {
+                AddHospital(hospital);
+            }
+        }
+
+        private void InitializeHospitalsFile()
+        {
+            if (!File.Exists(HospitalsFilePath))
+            {
+                using (File.Create(HospitalsFilePath))
+                {
+
+                }
+            }
+        }
     }
 }

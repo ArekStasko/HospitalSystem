@@ -1,23 +1,11 @@
 ﻿using HospitalSystem.DataAccess.models;
 
-
-namespace HospitalSystem.DataAccess.DataAccessControllers
+namespace HospitalSystem.DataAccess.DataAccessServices
 {
-    public class VisitsDataAccess
+    public class VisitsDataAccess : IVisitDataAccess
     {
         private string VisitsFilePath = @".\visits.txt";
         private string separator = "|";
-
-        private void InitializeFile()
-        {
-            if (!File.Exists(VisitsFilePath))
-            {
-                using (File.Create(VisitsFilePath))
-                {
-
-                }
-            }
-        }
 
         public IEnumerable<Visit> GetVisits()
         {
@@ -74,6 +62,17 @@ namespace HospitalSystem.DataAccess.DataAccessControllers
         {
             RemoveVisit(visitToUpdate);
             AddVisit(visitToUpdate);
+        }
+
+        private void InitializeFile()
+        {
+            if (!File.Exists(VisitsFilePath))
+            {
+                using (File.Create(VisitsFilePath))
+                {
+
+                }
+            }
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿
 namespace HospitalSystem.DataAccess.models
 {
-    public class Hospital : AbstractModel
+    public class Hospital : IHospital
     {
         public int HospitalID { get; }
         public bool IsOnlinePrescriptions { get; }
@@ -20,7 +20,7 @@ namespace HospitalSystem.DataAccess.models
             IsOnlinePrescriptions = hospitalData[5] == "Yes";
         }
 
-        public override string[] ConvertToDataRow()
+        public string[] ConvertToDataRow()
         {
             return new[] { 
                 HospitalID.ToString(), 

@@ -1,37 +1,18 @@
 ﻿using HospitalSystem.DataAccess.models;
+using HospitalSystem.DataAccess.DataAccessServices;
 
-
-namespace HospitalSystem.DataAccess.DataAccessControllers
+namespace HospitalSystem.DataAccess.DataAccessServices
 {
-    public class DoctorDataProvider
+    public class DoctorDataProvider : IDoctorDataAccess
     {
         private const string DoctorsFilePath = @".\doctors.txt";
         private const string separator = "|";
-
-        private void InitializeDoctorsFile()
-        {
-            if (!File.Exists(DoctorsFilePath))
-            {
-                using (File.Create(DoctorsFilePath))
-                {
-
-                }
-            }
-        }
 
         public void AddDoctor(Doctor newDoctor)
         {
             InitializeDoctorsFile();
             string line = string.Join(separator, newDoctor.ConvertToDataRow());
             File.AppendAllText(DoctorsFilePath, line + Environment.NewLine);
-        }
-
-        private void AddDoctors(List<Doctor> doctorsToAdd)
-        {
-            foreach(var doctor in doctorsToAdd)
-            {
-                AddDoctor(doctor);
-            }
         }
 
         public void RemoveDoctor(Doctor doctorToDelete)
@@ -65,6 +46,24 @@ namespace HospitalSystem.DataAccess.DataAccessControllers
 
             var doctors = GetDoctors();
             return doctors.Where(doctor => doctor.HospitalID == ID); ;
+        }
+        private void AddDoctors(List<Doctor> doctorsToAdd)
+        {
+            foreach (var doctor in doctorsToAdd)
+            {
+                AddDoctor(doctor);
+            }
+        }
+
+        private void InitializeDoctorsFile()
+        {
+            if (!File.Exists(DoctorsFilePath))
+            {
+                using (File.Create(DoctorsFilePath))
+                {
+
+                }
+            }
         }
     }
 }
