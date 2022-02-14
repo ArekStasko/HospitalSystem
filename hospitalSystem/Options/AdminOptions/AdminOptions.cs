@@ -1,7 +1,7 @@
 ﻿
 namespace HospitalSystem
 {
-    public class AdminOptions : View
+    public class AdminOptions : View, IAdminOptions
     {
 
         public void GetAdminOptions() 

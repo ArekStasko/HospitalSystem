@@ -1,7 +1,7 @@
 ﻿
 namespace HospitalSystem
 {
-    public class DoctorOptions : View
+    public class DoctorOptions : View, IDoctorOptions
     {
 
         public void GetDoctorOptions()
