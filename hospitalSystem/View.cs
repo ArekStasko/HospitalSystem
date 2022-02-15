@@ -1,4 +1,5 @@
 ﻿using HospitalSystem.DataControllers;
+using HospitalSystem.Options;
 using HospitalSystem.DataControllers.PatientControllers;
 using HospitalSystem.DataControllers.DoctorControllers;
 using HospitalSystem.DataControllers.AdminControllers;
@@ -34,23 +35,22 @@ namespace HospitalSystem
                 switch (userSelection)
                 {
                     case 1:
-                        var patientOptions = new PatientOptions();
+                        var patientOptions = OptionsFactory.GetNewPatientOptions();
                         patientOptions.GetPatientOptions();
                         break;
                     case 2:;
-                        var doctorOptions = new DoctorOptions();
+                        var doctorOptions = OptionsFactory.GetNewDoctorOptionsInstance();
                         doctorOptions.GetDoctorOptions();
                         break;
                     case 3:
-                        var adminOptions = new AdminOptions();
+                        var adminOptions = OptionsFactory.GetNewAdminOptionsInstance();
                         adminOptions.GetAdminOptions();
                         break;
                     default:
                         Console.WriteLine("You selected wrong option number");
                         break;
                 };
-            } while (userSelection != 4);
-            
+            } while (userSelection != 4);            
 
         }
         
@@ -151,8 +151,6 @@ namespace HospitalSystem
                 throw new Exception("There is no visits");
             }
         }
-
-
 
         private void PrintItem(string[] item)
         {
