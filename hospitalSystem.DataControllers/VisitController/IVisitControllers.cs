@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HospitalSystem.DataAccess.models;
 
 namespace HospitalSystem.DataControllers.AdminControllers
 {
-    public interface IAdminControllers
+    public interface IVisitControllers
     {
         public void GetHospitalsAndDoctors();
-        public void GetVisits();
+        public IEnumerable<IVisit> GetVisits();
         public void AddDoctor();
         public void RemoveDoctor();
         public void AddHospital();

@@ -4,9 +4,9 @@ namespace HospitalSystem.DataAccess.DataAccessServices
 {
     public interface IVisitDataAccess
     {
-        public IEnumerable<Visit> GetVisits();
-        public void AddVisit(Visit visit);
-        public void RemoveVisit(Visit visitToRemove);
-        public void UpdateVisit(Visit visitToUpdate);
+        public IEnumerable<IVisit> GetVisits();
+        public void AddVisit(IVisit visit);
+        public void RemoveVisit(IVisit visitToRemove);
+        public void UpdateVisit(IVisit visitToUpdate);
     }
 }

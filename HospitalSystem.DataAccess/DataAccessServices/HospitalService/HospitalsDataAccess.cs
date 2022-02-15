@@ -7,14 +7,14 @@ namespace HospitalSystem.DataAccess.DataAccessServices
         private const string HospitalsFilePath = @".\hospitals.txt";
         private const string separator = "|";
 
-        public void AddHospital(Hospital newHospital)
+        public void AddHospital(IHospital newHospital)
         {
             InitializeHospitalsFile();
             string line = string.Join(separator, newHospital.ConvertToDataRow());
             File.AppendAllText(HospitalsFilePath, line + Environment.NewLine);
         }
 
-        public IEnumerable<Hospital> GetHospitals()
+        public IEnumerable<IHospital> GetHospitals()
         {
             InitializeHospitalsFile();
 
@@ -23,23 +23,23 @@ namespace HospitalSystem.DataAccess.DataAccessServices
                 if (!string.IsNullOrWhiteSpace(line))
                 {
                     List<string> hospitalData = new List<string>(line.Split(separator.ToCharArray()));
-                    Hospital newHospital = new Hospital(hospitalData);
+                    IHospital newHospital = new Hospital(hospitalData);
                     yield return newHospital;
                 }
             }
         }
 
-        public void RemoveHospital(Hospital hospitalToRemove)
+        public void RemoveHospital(IHospital hospitalToRemove)
         {
             InitializeHospitalsFile();
             var hospitals = GetHospitals().ToList();
             hospitals.Remove(hospitalToRemove);
-            File.WriteAllText(HospitalsFilePath, String.Empty);
+            File.WriteAllText(HospitalsFilePath, string.Empty);
 
             AddHospitals(hospitals);
         }
 
-        private void AddHospitals(List<Hospital> hospitals)
+        private void AddHospitals(List<IHospital> hospitals)
         {
             foreach (var hospital in hospitals)
             {

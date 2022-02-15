@@ -1,24 +1,26 @@
 ﻿using HospitalSystem.DataAccess.DataAccessServices;
 using HospitalSystem.DataAccess;
+using HospitalSystem.DataAccess.models;
 
 namespace HospitalSystem.DataControllers.DoctorControllers
 {
     public class DoctorController : IDoctorControllers
     {
+        private int DoctorHospitalID { get; set; }
+        private int DoctorID { get; set; }
+
         private IView _view;
         private IDoctorDataAccess _doctorProvider;
-        private IHospitalDataAccess _hospitalProvider;
-        private IVisitDataAccess _visitProvider;
+
         public DoctorController(IView view)
         {
             _view = view;
             _doctorProvider = DataAccessFactory.GetNewDoctorDataAccessInstance();
-            _hospitalProvider = DataAccessFactory.GetNewHospitalDataAccessInstance();
-            _visitProvider = DataAccessFactory.GetNewVisitDataAccessInstance();
         } 
 
-        private int DoctorHospitalID { get; set; }
-        private int DoctorID { get; set; }
+        public IEnumerable<IDoctor> GetDoctors() => _doctorProvider.GetDoctors();
+        
+
         public void DoctorAuthorization()
         {
             _view.PrintMessage("Please provide your ID :");
@@ -29,7 +31,7 @@ namespace HospitalSystem.DataControllers.DoctorControllers
                 var doctor = doctors.First(doc => doc.DoctorID == doctorID);
                 DoctorHospitalID = doctor.HospitalID;
                 DoctorID = doctor.DoctorID;
-                Console.WriteLine($"You are logged in as {doctorID} doctor");
+                _view.PrintMessage($"You are logged in as {doctorID} doctor");
             }
             catch(Exception)
             {
@@ -38,29 +40,20 @@ namespace HospitalSystem.DataControllers.DoctorControllers
             }
         }
 
-        public void GetDoctorHospital()
+        public IHospital GetDoctorHospital()
         {
-            var hospitals = _hospitalProvider.GetHospitals();
-            var doctorHospital = hospitals.First(hospital => hospital.HospitalID == DoctorHospitalID);
+            var hospitalController = ControllersFactory.NewHospitalControllersInstance(_view);
+            var hospitals = hospitalController.GetHospitals();
 
-            _view.PrintMessage("Your hospital :");
-            _view.PrintHospitals(doctorHospital);
+            return hospitals.First(hospital => hospital.HospitalID == DoctorHospitalID);
         }
 
-        public void GetDoctorVisits()
+        public IEnumerable<IVisit> GetDoctorVisits()
         {
-            var visits = _visitProvider.GetVisits();
+            var visitController = ControllersFactory.NewVisitControllersInstance(_view);
+            var visits = visitController.GetVisits();
 
-            try
-            {
-                var visit = visits.First(visit => visit.DoctorID == DoctorID);
-                _view.PrintVisit(visit);
-            }
-            catch (Exception)
-            {
-                _view.PrintMessage("You don't have any visits");
-                return;
-            }
+            return visits.Where(visit => visit.DoctorID == DoctorID);
         }
     }
 }

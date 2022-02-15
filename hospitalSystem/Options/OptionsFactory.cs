@@ -18,5 +18,10 @@ namespace HospitalSystem.Options
         {
             return new PatientOptions();
         }
+
+        public static IHospitalOptions GetNewHospitalOptions()
+        {
+            return new HospitalOptions();
+        }
     }
 }

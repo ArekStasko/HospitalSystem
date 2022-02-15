@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HospitalSystem.DataAccess.models;
 
 namespace HospitalSystem.DataControllers.HospitalControllers
 {
     public interface IHospitalControllers
     {
-        public void GetHospitalOptions(int selectedOption);
-        public void GetHospitalInfo();
-        public void GetHospitalDoctors();
-        public void ShowAvailableVisits();
+        public IEnumerable<IHospital> GetHospitals();
+        public IHospital GetHospital();
+        public IEnumerable<IDoctor> GetHospitalDoctors();
+        public IEnumerable<IVisit> GetAvailableVisits();
 
     }
 }

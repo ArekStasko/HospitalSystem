@@ -7,9 +7,9 @@ namespace HospitalSystem.DataControllers
 {
     public static class ControllersFactory
     {
-        public static IAdminControllers NewAdminControllersInstance(this IView view)
+        public static IVisitControllers NewVisitControllersInstance(this IView view)
         {
-            return new AdminController(view);
+            return new VisitControllers(view);
         }
 
         public static IPatientControllers NewPatientControllersInstance(this IView view)
@@ -22,9 +22,9 @@ namespace HospitalSystem.DataControllers
             return new DoctorController(view);
         }
 
-        public static IHospitalControllers NewHospitalControllersInstance(this IView view, int HospitalID)
+        public static IHospitalControllers NewHospitalControllersInstance(this IView view)
         {
-            return new HospitalController(view, HospitalID);
+            return new HospitalController(view);
         }
 
     }

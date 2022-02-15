@@ -1,4 +1,5 @@
 ﻿using HospitalSystem.DataAccess.DataAccessServices;
+using HospitalSystem.DataAccess.models;
 using HospitalSystem.DataAccess;
 
 namespace HospitalSystem.DataControllers.HospitalControllers
@@ -7,67 +8,44 @@ namespace HospitalSystem.DataControllers.HospitalControllers
     {
         private int HospitalID { get; set; }
         private IView _view;
-        private IDoctorDataAccess _doctorProvider;
         private IHospitalDataAccess _hospitalProvider;
-        private IVisitDataAccess _visitProvider;
 
-        public HospitalController(IView view, int HospitalID)
+        public HospitalController(IView view)
         {
-            this.HospitalID = HospitalID;
             _view = view;
-            _doctorProvider = DataAccessFactory.GetNewDoctorDataAccessInstance();
+            this.HospitalID = _view.GetID();
             _hospitalProvider = DataAccessFactory.GetNewHospitalDataAccessInstance();
-            _visitProvider = DataAccessFactory.GetNewVisitDataAccessInstance();
         }
 
-        public void GetHospitalOptions(int selectedOption)
-        {
+        public IEnumerable<IHospital> GetHospitals() => _hospitalProvider.GetHospitals();
 
-            switch (selectedOption)
-            {
-                case 1:
-                    //Not implemented yet
-                    break;
-                case 2:
-                    GetHospitalInfo();
-                    break;
-                case 3:
-                    GetHospitalDoctors();
-                    break;
-                case 4:
-                    ShowAvailableVisits();
-                    break;
-            }
-        }
-
-        public void GetHospitalInfo()
+        public IHospital GetHospital()
         {
-            var hospital = _hospitalProvider.GetHospitals()
+            return _hospitalProvider.GetHospitals()
                 .First(hospital => hospital.HospitalID == HospitalID);
-
-            _view.PrintHospitals(hospital);
         }
 
-        public void GetHospitalDoctors()
+        public IEnumerable<IDoctor> GetHospitalDoctors()
         {
-            var doctors = _doctorProvider.GetDoctors()
+            var doctorControllers = ControllersFactory.NewDoctorControllersInstance(_view);
+            return doctorControllers.GetDoctors()
                         .Where(doctor => doctor.HospitalID == HospitalID);
-            _view.PrintDoctors(doctors);
         }
 
-        public void ShowAvailableVisits()
+        public IEnumerable<IVisit> GetAvailableVisits()
         {
-            var visits = _visitProvider.GetVisits();
-            visits = visits.Where(visit => visit.HospitalID == HospitalID);
+            var visitsControllers = ControllersFactory.NewVisitControllersInstance(_view);
+            return visitsControllers.GetVisits()
+                        .Where(visit => visit.HospitalID == HospitalID);
+        }
 
-            if (visits.Any())
-            {
-                _view.PrintVisits(visits);
-            }
-            else
-            {
-                throw new Exception("This hospital doesn't have available visits");
-            }
+        private void SetHospital()
+        {
+            var hospitals = _hospitalProvider.GetHospitals();
+
+            _view.PrintHospitals(hospitals);
+            _view.PrintMessage("Please provide hospital ID from list :");
+            HospitalID = _view.GetID();
         }
     }
 }

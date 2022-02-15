@@ -7,7 +7,7 @@ namespace HospitalSystem.DataAccess.DataAccessServices
         private string VisitsFilePath = @".\visits.txt";
         private string separator = "|";
 
-        public IEnumerable<Visit> GetVisits()
+        public IEnumerable<IVisit> GetVisits()
         {
             InitializeFile();
 
@@ -16,7 +16,7 @@ namespace HospitalSystem.DataAccess.DataAccessServices
                 if (!string.IsNullOrEmpty(line))
                 {
                     List<string> visitData = new List<string>(line.Split(separator.ToCharArray()));
-                    Visit visit = new Visit(visitData);
+                    IVisit visit = new Visit(visitData);
                     visit.Available = visitData[3] == "Yes";
                     if (!visit.Available)
                     {
@@ -29,7 +29,7 @@ namespace HospitalSystem.DataAccess.DataAccessServices
             }
         }
 
-        public void AddVisit(Visit visit)
+        public void AddVisit(IVisit visit)
         {
             InitializeFile();
             string dataToSave;
@@ -44,7 +44,7 @@ namespace HospitalSystem.DataAccess.DataAccessServices
             File.AppendAllText(VisitsFilePath, dataToSave + Environment.NewLine);
         }
 
-        public void RemoveVisit(Visit visitToRemove)
+        public void RemoveVisit(IVisit visitToRemove)
         {
             InitializeFile();
             var visits = GetVisits().ToList();
@@ -58,7 +58,7 @@ namespace HospitalSystem.DataAccess.DataAccessServices
             }
         }
 
-        public void UpdateVisit(Visit visitToUpdate)
+        public void UpdateVisit(IVisit visitToUpdate)
         {
             RemoveVisit(visitToUpdate);
             AddVisit(visitToUpdate);

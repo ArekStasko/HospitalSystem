@@ -10,5 +10,7 @@ namespace HospitalSystem.DataAccess.models
         public int DoctorID { get; set; }
         public int UserID { get; set; }
         public string Description { get; set; }
+        public string[] MainInfoToDataRow();
+        public string[] AllInfoToDataRow();
     }
 }

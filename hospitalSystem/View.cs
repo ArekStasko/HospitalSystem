@@ -3,6 +3,7 @@ using HospitalSystem.Options;
 using HospitalSystem.DataControllers.PatientControllers;
 using HospitalSystem.DataControllers.DoctorControllers;
 using HospitalSystem.DataControllers.AdminControllers;
+using HospitalSystem.DataControllers.HospitalControllers;
 using HospitalSystem.DataAccess.models;
 
 namespace HospitalSystem
@@ -10,20 +11,21 @@ namespace HospitalSystem
     public class View : IView
     {
         protected OptionsProvider _options = new OptionsProvider();
-        protected IAdminControllers _adminControllers;
+        protected IVisitControllers _visitControllers;
         protected IPatientControllers _patientControllers;
         protected IDoctorControllers _doctorControllers;
+        protected IHospitalControllers _hospitalControllers;
 
         public View()
         {
-            _adminControllers = ControllersFactory.NewAdminControllersInstance(this);
+            _visitControllers = ControllersFactory.NewAdminControllersInstance(this);
             _patientControllers = ControllersFactory.NewPatientControllersInstance(this);
             _doctorControllers = ControllersFactory.NewDoctorControllersInstance(this);
+            _hospitalControllers = ControllersFactory.NewHospitalControllersInstance(this);
         }
 
         private void Run()
         {
-            OptionsProvider options = new OptionsProvider();
             _options.PrintStartingOptions();
             int userSelection;
 

@@ -8,14 +8,14 @@ namespace HospitalSystem.DataAccess.DataAccessServices
         private const string DoctorsFilePath = @".\doctors.txt";
         private const string separator = "|";
 
-        public void AddDoctor(Doctor newDoctor)
+        public void AddDoctor(IDoctor newDoctor)
         {
             InitializeDoctorsFile();
             string line = string.Join(separator, newDoctor.ConvertToDataRow());
             File.AppendAllText(DoctorsFilePath, line + Environment.NewLine);
         }
 
-        public void RemoveDoctor(Doctor doctorToDelete)
+        public void RemoveDoctor(IDoctor doctorToDelete)
         {
             InitializeDoctorsFile();
             var doctors = GetDoctors().ToList();
@@ -24,7 +24,7 @@ namespace HospitalSystem.DataAccess.DataAccessServices
 
             AddDoctors(doctors);
         }
-        public IEnumerable<Doctor> GetDoctors()
+        public IEnumerable<IDoctor> GetDoctors()
         {
             InitializeDoctorsFile();
 
@@ -33,21 +33,21 @@ namespace HospitalSystem.DataAccess.DataAccessServices
                 if (!string.IsNullOrWhiteSpace(line))
                 {
                     List<string> doctorData = new List<string>(line.Split(separator.ToCharArray()));
-                    Doctor newDoctor = new Doctor(doctorData);
+                    IDoctor newDoctor = new Doctor(doctorData);
                     yield return newDoctor;
                 }
             }
 
         }
 
-        public IEnumerable<Doctor> GetDoctorsByHospitalID(int ID)
+        public IEnumerable<IDoctor> GetDoctorsByHospitalID(int ID)
         {
             InitializeDoctorsFile();
 
             var doctors = GetDoctors();
             return doctors.Where(doctor => doctor.HospitalID == ID); ;
         }
-        private void AddDoctors(List<Doctor> doctorsToAdd)
+        private void AddDoctors(List<IDoctor> doctorsToAdd)
         {
             foreach (var doctor in doctorsToAdd)
             {

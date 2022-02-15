@@ -4,9 +4,9 @@ namespace HospitalSystem.DataAccess.DataAccessServices
 {
     public interface IDoctorDataAccess
     {
-        public void AddDoctor(Doctor newDoctor);
-        public void RemoveDoctor(Doctor doctorToDelete);
-        public IEnumerable<Doctor> GetDoctors();
-        public IEnumerable<Doctor> GetDoctorsByHospitalID(int ID);
+        public void AddDoctor(IDoctor newDoctor);
+        public void RemoveDoctor(IDoctor doctorToDelete);
+        public IEnumerable<IDoctor> GetDoctors();
+        public IEnumerable<IDoctor> GetDoctorsByHospitalID(int ID);
     }
 }

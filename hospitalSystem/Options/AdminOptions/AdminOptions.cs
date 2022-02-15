@@ -15,6 +15,8 @@ namespace HospitalSystem
                 switch (userSelection)
                 {
                     case 1:
+                        var hospitals = _hospitalController.GetHospitals();
+                        var doctors = _doctorProvider.GetDoctors();
                         _adminControllers.GetHospitalsAndDoctors();
                         break;
                     case 2:
