@@ -8,5 +8,7 @@ namespace HospitalSystem.DataControllers.DoctorControllers
         public IEnumerable<IDoctor> GetDoctors();
         public IHospital GetDoctorHospital();
         public IEnumerable<IVisit> GetDoctorVisits();
+        public void AddDoctor();
+        public void RemoveDoctor();
     }
 }

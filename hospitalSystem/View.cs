@@ -1,6 +1,5 @@
 ﻿using HospitalSystem.DataControllers;
 using HospitalSystem.Options;
-using HospitalSystem.DataControllers.PatientControllers;
 using HospitalSystem.DataControllers.DoctorControllers;
 using HospitalSystem.DataControllers.AdminControllers;
 using HospitalSystem.DataControllers.HospitalControllers;
@@ -12,14 +11,12 @@ namespace HospitalSystem
     {
         protected OptionsProvider _options = new OptionsProvider();
         protected IVisitControllers _visitControllers;
-        protected IPatientControllers _patientControllers;
         protected IDoctorControllers _doctorControllers;
         protected IHospitalControllers _hospitalControllers;
 
         public View()
         {
-            _visitControllers = ControllersFactory.NewAdminControllersInstance(this);
-            _patientControllers = ControllersFactory.NewPatientControllersInstance(this);
+            _visitControllers = ControllersFactory.NewVisitControllersInstance(this);
             _doctorControllers = ControllersFactory.NewDoctorControllersInstance(this);
             _hospitalControllers = ControllersFactory.NewHospitalControllersInstance(this);
         }
@@ -99,14 +96,14 @@ namespace HospitalSystem
             return Int32.Parse(ID);
         }
 
-        public void PrintHospitals(Hospital hospital)
+        public void PrintHospitals(IHospital hospital)
         {
             Console.WriteLine("---");
             Console.WriteLine("| ID | Hospital Name | Adress | Opening Time | Closing Time | Online Prescriptions |");
             PrintItem(hospital.ConvertToDataRow());
         }
 
-        public void PrintHospitals(IEnumerable<Hospital> hospitals)
+        public void PrintHospitals(IEnumerable<IHospital> hospitals)
         {
             Console.WriteLine("| ID | Hospital Name | Adress | Opening Time | Closing Time | Online Prescriptions |");
             foreach (var hospital in hospitals)
@@ -116,7 +113,7 @@ namespace HospitalSystem
             }
         }
 
-        public void PrintDoctors(IEnumerable<Doctor> doctors)
+        public void PrintDoctors(IEnumerable<IDoctor> doctors)
         {
             foreach (var doctor in doctors)
             {
@@ -125,7 +122,7 @@ namespace HospitalSystem
             }
         }
 
-        public void PrintVisit(Visit visit)
+        public void PrintVisit(IVisit visit)
         {
             if (visit.Available)
             {
@@ -137,7 +134,7 @@ namespace HospitalSystem
             }
         }
 
-        public void PrintVisits(IEnumerable<Visit> visits)
+        public void PrintVisits(IEnumerable<IVisit> visits)
         {
             if (visits.Any())
             {
@@ -156,7 +153,7 @@ namespace HospitalSystem
 
         private void PrintItem(string[] item)
         {
-            Console.WriteLine(String.Join(" | ", item));
+            Console.WriteLine(string.Join(" | ", item));
         }
 
         static void Main(string[] args)

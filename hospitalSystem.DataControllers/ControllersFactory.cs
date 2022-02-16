@@ -1,5 +1,4 @@
 ﻿using HospitalSystem.DataControllers.AdminControllers;
-using HospitalSystem.DataControllers.PatientControllers;
 using HospitalSystem.DataControllers.DoctorControllers;
 using HospitalSystem.DataControllers.HospitalControllers;
 
@@ -10,11 +9,6 @@ namespace HospitalSystem.DataControllers
         public static IVisitControllers NewVisitControllersInstance(this IView view)
         {
             return new VisitControllers(view);
-        }
-
-        public static IPatientControllers NewPatientControllersInstance(this IView view)
-        {
-            return new PatientController(view);
         }
 
         public static IDoctorControllers NewDoctorControllersInstance(this IView view)

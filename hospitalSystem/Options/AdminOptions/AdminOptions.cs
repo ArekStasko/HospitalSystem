@@ -15,36 +15,38 @@ namespace HospitalSystem
                 switch (userSelection)
                 {
                     case 1:
-                        var hospitals = _hospitalController.GetHospitals();
-                        var doctors = _doctorProvider.GetDoctors();
-                        _adminControllers.GetHospitalsAndDoctors();
+                        var hospitals = _hospitalControllers.GetHospitals();
+                        PrintHospitals(hospitals);
+                        var doctors = _doctorControllers.GetDoctors();
+                        PrintDoctors(doctors);
                         break;
                     case 2:
-                        _adminControllers.GetVisits();
+                        var visits = _visitControllers.GetVisits();
+                        PrintVisits(visits);
                         break;
                     case 3:
                         Console.Clear();
-                        _adminControllers.AddDoctor();
+                        _doctorControllers.AddDoctor();
                         break;
                     case 4:
                         Console.Clear();
-                        _adminControllers.RemoveDoctor();
+                        _doctorControllers.RemoveDoctor();
                         break;
                     case 5:
                         Console.Clear();
-                        _adminControllers.AddHospital();
+                        _hospitalControllers.AddHospital();
                         break;
                     case 6:
                         Console.Clear();
-                        _adminControllers.RemoveHospital();
+                        _hospitalControllers.RemoveHospital();
                         break;
                     case 7:
                         Console.Clear();
-                        _adminControllers.AddVisit();
+                        _visitControllers.AddVisit();
                         break;
                     case 8:
                         Console.Clear();
-                        _adminControllers.RemoveVisit();
+                        _visitControllers.RemoveVisit();
                         break;
                     default:
                         Console.WriteLine("You chose wrong option number");

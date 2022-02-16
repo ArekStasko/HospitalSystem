@@ -4,27 +4,31 @@ namespace HospitalSystem
 {
     public class HospitalOptions : View, IHospitalOptions
     {
-        public void GetHospitalOptions(int selectedOption)
+        public void GetHospitalOptions()
         {
-            _options.PrintAdminOptions();
-
+            _options.PrintHospitalOptions();
             int userSelection = GetUserSelection();
 
             while (userSelection != 5)
             {
-                switch (selectedOption)
+                _options.PrintHospitalOptions();
+                userSelection = GetUserSelection();
+                switch (userSelection)
                 {
                     case 1:
-                        //Not implemented yet
+                        _hospitalControllers.SetHospital();
                         break;
                     case 2:
-                        _hospitalControllers.GetHospitalInfo();
+                        var hospital = _hospitalControllers.GetHospital();
+                        PrintHospitals(hospital);
                         break;
                     case 3:
-                        _hospitalControllers.GetHospitalDoctors();
+                        var doctors = _hospitalControllers.GetHospitalDoctors();
+                        PrintDoctors(doctors);
                         break;
                     case 4:
-                        _hospitalControllers.ShowAvailableVisits();
+                        var visits = _hospitalControllers.GetAvailableVisits();
+                        PrintVisits(visits);
                         break;
                 }
             }

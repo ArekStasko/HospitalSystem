@@ -11,11 +11,11 @@ namespace HospitalSystem.DataControllers
     {
         public int GetUserSelection();
         public int GetID();
-        public void PrintHospitals(Hospital hospital);
-        public void PrintHospitals(IEnumerable<Hospital> hospitals);
-        public void PrintDoctors(IEnumerable<Doctor> doctors);
-        public void PrintVisit(Visit visit);
-        public void PrintVisits(IEnumerable<Visit> visits);
+        public void PrintHospitals(IHospital hospital);
+        public void PrintHospitals(IEnumerable<IHospital> hospitals);
+        public void PrintDoctors(IEnumerable<IDoctor> doctors);
+        public void PrintVisit(IVisit visit);
+        public void PrintVisits(IEnumerable<IVisit> visits);
         public void PrintMessage(string msg);
         public string GetData();
 

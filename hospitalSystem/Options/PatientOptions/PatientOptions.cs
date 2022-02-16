@@ -1,9 +1,10 @@
-﻿
+﻿using HospitalSystem.Options;
+
 namespace HospitalSystem
 {
     public class PatientOptions : View, IPatientOptions
     {
-
+        
         public void GetPatientOptions()
         {
             int selectedOption;
@@ -17,14 +18,15 @@ namespace HospitalSystem
                 {
                     case 1:
                         _options.PrintHospitalOptions();
-                        _patientControllers.HospitalOptions();
+                        var hospitalOptions = OptionsFactory.GetNewHospitalOptions();
+                        hospitalOptions.GetHospitalOptions();
                         break;
                     case 2:
-                        _patientControllers.ShowMyVisits();
+                        _visitControllers.GetMyVisits();
                         break;
                     case 3:
                         Console.Clear();
-                        _patientControllers.SignUpForVisit();
+                        _visitControllers.SignUpForVisit();
                         break;
                 }
 
